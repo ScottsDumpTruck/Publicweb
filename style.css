@@ -1,0 +1,25 @@
+:root {
+    --coronado-tan: #D2B48C;
+    --earth-brown: #5D4037;
+    --desert-sand: #F5F5DC;
+}
+
+body {
+    background-color: var(--desert-sand);
+    scroll-behavior: smooth;
+}
+
+/* Logo Pop Effect */
+.logo-shadow {
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+}
+
+/* Custom transitions for the rotating gallery */
+#carousel-track {
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* Material Tile Hover */
+.material-tile:hover img {
+    transform: scale(1.05);
+}

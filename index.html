@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Scott Dump Truck & Tractor Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#F5F5DC] text-gray-900">
+
+    <header class="relative bg-[#5D4037] py-10 border-b-8 border-[#D2B48C] text-center">
+        
+        <div class="hidden lg:block absolute right-[15%] top-1/2 -translate-y-1/2 text-right">
+            <p class="text-[#D2B48C] font-black text-2xl uppercase tracking-tighter">4869 N. Davis Avenue</p>
+            <p class="text-white font-bold uppercase tracking-widest text-sm">Tucson, AZ</p>
+            <p class="text-white/90 font-bold uppercase tracking-widest text-xs mt-1 bg-black/20 px-2 py-1 rounded inline-block">
+                Open to Public
+            </p>
+        </div>
+
+        <a href="index.html">
+            <img src="logo.png" alt="Scott Dump Truck & Tractor Logo" class="h-48 md:h-72 mx-auto logo-shadow mb-8 transition transform hover:scale-105">
+        </a>
+        
+        <nav>
+            <ul class="flex justify-center gap-8 text-white font-bold uppercase tracking-widest text-xs">
+                <li><a href="index.html" class="text-[#D2B48C]">Home</a></li>
+                <li><a href="materials.html" class="hover:text-[#D2B48C] transition">Materials</a></li>
+                <li><a href="calculator.html" class="hover:text-[#D2B48C] transition">Calculator</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-12 px-4">
+        <div class="relative h-[350px] md:h-[550px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-black">
+            <div id="carousel-track" class="w-full h-full flex items-center justify-center opacity-100">
+                </div>
+            <div class="absolute bottom-0 inset-x-0 bg-black/60 p-4 text-white text-center italic" id="carousel-caption">
+                Loading Our Recent Projects...
+            </div>
+        </div>
+
+        <section class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
+            <div class="p-4">
+                <h4 class="font-black text-[#5D4037] uppercase text-sm tracking-widest border-b-2 border-[#D2B48C] pb-2 mb-3">Tractor Services</h4>
+                <p class="text-xs text-gray-700 leading-relaxed">
+                    Specializing in <strong>precision grading</strong>, site preparation, and lot clearing in Tucson. We handle everything from driveway leveling to pad preparation with professional tractor equipment.
+                </p>
+            </div>
+            <div class="p-4 border-x-0 md:border-x-2 border-gray-200">
+                <h4 class="font-black text-[#5D4037] uppercase text-sm tracking-widest border-b-2 border-[#D2B48C] pb-2 mb-3">Material Delivery</h4>
+                <p class="text-xs text-gray-700 leading-relaxed">
+                    Fast delivery of <strong>Coronado Brown rock</strong>, screened topsoil, and 3/4" minus gravel. Whether you need a single load or a full project supply, our dump truck service is reliable and local.
+                </p>
+            </div>
+            <div class="p-4">
+                <h4 class="font-black text-[#5D4037] uppercase text-sm tracking-widest border-b-2 border-[#D2B48C] pb-2 mb-3">Local Expertise</h4>
+                <p class="text-xs text-gray-700 leading-relaxed">
+                    Serving the <strong>Greater Tucson area</strong> from our Davis Avenue location. We are a family-owned business dedicated to high-quality earthmoving and aggregate supply for homeowners and contractors.
+                </p>
+            </div>
+        </section>
+        
+        <section class="mt-16 bg-white p-8 rounded-2xl shadow-xl border-t-8 border-[#D2B48C]">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-[#5D4037]">Request a Free Estimate</h3>
+                <p class="text-gray-500 mt-2">Professional grading and material delivery in Tucson.</p>
+            </div>
+            <form action="https://formspree.io/f/YOUR_ID" method="POST" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="name" placeholder="Full Name" class="w-full border p-3 rounded-lg outline-none focus:border-[#D2B48C]" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" class="w-full border p-3 rounded-lg outline-none focus:border-[#D2B48C]" required>
+                </div>
+                <textarea name="message" placeholder="Project details (Material needed, tractor work, etc.)" class="w-full border p-3 rounded-lg h-32 outline-none focus:border-[#D2B48C]" required></textarea>
+                <button type="submit" class="w-full bg-[#5D4037] text-white py-4 font-black rounded-lg uppercase tracking-widest hover:bg-[#D2B48C] hover:text-[#5D4037] transition duration-300 shadow-lg">
+                    Submit Quote Request
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-[#5D4037] py-12 text-center text-[10px] text-gray-400 uppercase tracking-[0.3em]">
+        <p>© 2026 Scott Dump Truck & Tractor Service</p>
+        <p class="mt-4 text-white">Infrastructure by <a href="https://theory-solutions.com" class="font-bold underline hover:text-[#D2B48C]">Theory Solutions</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
