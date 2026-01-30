@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#F5F5DC] text-gray-900">
+<body class="bg-[#F5F5DC] text-gray-900 overflow-x-hidden">
 
     <header class="bg-[#5D4037] py-6 md:py-10 border-b-8 border-[#D2B48C] text-center relative">
         <div class="px-4 mb-6 lg:mb-0 lg:absolute lg:right-[10%] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
@@ -18,75 +18,87 @@
             </p>
         </div>
         <a href="index.html">
-            <img src="logo.png" alt="Logo" class="h-32 md:h-52 mx-auto logo-shadow mb-6">
+            <img src="logo.png" alt="Logo" class="h-32 md:h-52 mx-auto logo-shadow mb-6 transition transform hover:scale-105">
         </a>
         <nav>
             <ul class="flex justify-center gap-6 text-white font-bold uppercase tracking-widest text-[10px] md:text-xs">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="hover:text-[#D2B48C]">Home</a></li>
                 <li><a href="materials.html" class="text-[#D2B48C]">Materials</a></li>
-                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="calculator.html" class="hover:text-[#D2B48C]">Calculator</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto py-12 px-4">
-        
+    <main class="max-w-6xl mx-auto py-12 px-4 min-h-[60vh]">
+        <section class="mb-12 bg-white border-l-8 border-[#D2B48C] p-6 shadow-md rounded-r-xl">
+            <div class="flex items-start gap-4">
+                <div class="bg-[#5D4037] text-white p-2 rounded-full hidden md:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="text-[#5D4037] font-black uppercase text-sm tracking-widest mb-1">Pricing & Delivery Notice</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Prices shown do not include delivery or applicable taxes. 
+                        <span class="text-[#5D4037] font-bold underline decoration-[#D2B48C]">Complimentary delivery is available for orders of 10 tons or more.</span> 
+                        For orders under 10 tons, delivery fees vary by distance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <div id="category-hub" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
             <div onclick="filterMaterials('Construction Aggregate')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/construction_bg.jpg" alt="Construction" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Construction Aggregate</h3>
-                </div>
+                <img src="images/ABC.png" alt="Construction" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Construction Aggregate</h3></div>
             </div>
-
             <div onclick="filterMaterials('Decorative Aggregate')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/decorative_bg.jpg" alt="Decorative" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Decorative Aggregate</h3>
-                </div>
+                <img src="images/3-8_Coronado_Brown.png" alt="Decorative" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Decorative Aggregate</h3></div>
             </div>
-
             <div onclick="filterMaterials('Sand')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/sand_bg.jpg" alt="Sand" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Sand</h3>
-                </div>
+                <img src="images/Mortarsand.png" alt="Sand" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Sand</h3></div>
             </div>
-
             <div onclick="filterMaterials('Soil')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/soil_bg.jpg" alt="Soil" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Soil</h3>
-                </div>
+                <img src="images/Fill dirt.png" alt="Soil" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Soil</h3></div>
             </div>
-
             <div onclick="filterMaterials('Salt River Rock')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
                 <img src="images/riverrock.jpeg" alt="River Rock" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Salt River Rock</h3>
-                </div>
+                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Salt River Rock</h3></div>
             </div>
-
             <div onclick="filterMaterials('Rip Rap')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
                 <img src="images/riprap.jpeg" alt="Rip Rap" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Rip Rap</h3>
-                </div>
+                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Rip Rap</h3></div>
             </div>
         </div>
 
         <div id="results-view" class="hidden">
             <div class="flex items-center justify-between mb-8 border-b-4 border-[#D2B48C] pb-4">
                 <h2 id="category-title" class="text-3xl font-black text-[#5D4037] uppercase italic">Category</h2>
-                <button onclick="showHub()" class="bg-[#5D4037] text-white px-4 py-2 rounded font-bold uppercase text-xs hover:bg-[#D2B48C] transition">
-                    ← Back
-                </button>
+                <button onclick="showHub()" class="bg-[#5D4037] text-white px-6 py-2 rounded-full font-bold uppercase text-xs hover:bg-[#D2B48C] transition shadow-lg">← Back</button>
             </div>
-            <div id="materials-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                </div>
+            <div id="materials-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
         </div>
     </main>
+
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex flex-col items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-5xl font-light hover:text-[#D2B48C] transition">&times;</button>
+        <button onclick="changeImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-6xl hover:text-[#D2B48C] select-none">‹</button>
+        <button onclick="changeImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-6xl hover:text-[#D2B48C] select-none">›</button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[70vh] rounded-lg shadow-2xl object-contain">
+        <div class="mt-8 text-center text-white">
+            <h3 id="lightbox-name" class="text-2xl font-black uppercase tracking-tighter"></h3>
+            <p id="lightbox-price" class="text-[#D2B48C] text-xl font-bold mt-2"></p>
+        </div>
+    </div>
+
+    <footer class="bg-[#5D4037] py-12 text-center text-[10px] text-gray-400 uppercase tracking-[0.3em] px-4">
+        <p>© 2026 Scott Dump Truck & Tractor Service</p>
+        <p class="mt-4 text-white">Infrastructure by <a href="#" class="font-bold underline hover:text-[#D2B48C]">Theory Solutions</a></p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

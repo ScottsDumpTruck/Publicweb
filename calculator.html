@@ -7,80 +7,113 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#F5F5DC] text-gray-900">
+<body class="bg-[#F5F5DC] text-gray-900 overflow-x-hidden">
 
-    <header class="relative bg-[#5D4037] py-10 border-b-8 border-[#D2B48C] text-center">
-        
-        <div class="hidden lg:block absolute right-[15%] top-1/2 -translate-y-1/2 text-right">
-            <p class="text-[#D2B48C] font-black text-2xl uppercase tracking-tighter">4869 N. Davis Avenue</p>
-            <p class="text-white font-bold uppercase tracking-widest text-sm">Tucson, AZ</p>
-            <p class="text-white/90 font-bold uppercase tracking-widest text-xs mt-1 bg-black/20 px-2 py-1 rounded inline-block">
-                Open to Public
+    <header class="bg-[#5D4037] py-6 md:py-10 border-b-8 border-[#D2B48C] text-center relative">
+        <div class="px-4 mb-6 lg:mb-0 lg:absolute lg:right-[10%] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+            <p class="text-[#D2B48C] font-black text-lg md:text-2xl uppercase tracking-tighter">4869 N. Davis Avenue</p>
+            <p class="text-white font-bold uppercase tracking-widest text-xs md:text-sm">Tucson, AZ</p>
+            <p class="text-[#5D4037] font-black uppercase tracking-widest text-[10px] md:text-xs mt-2 bg-[#D2B48C] px-4 py-1.5 rounded-full inline-block shadow-lg">
+                Open to the Public
             </p>
         </div>
-
         <a href="index.html">
-            <img src="logo.png" alt="Scott Dump Truck & Tractor Logo" class="h-48 md:h-72 mx-auto logo-shadow mb-8 transition transform hover:scale-105">
+            <img src="logo.png" alt="Scott Dump Truck Logo" class="h-32 md:h-52 mx-auto logo-shadow mb-6 transition transform hover:scale-105">
         </a>
-        
         <nav>
-            <ul class="flex justify-center gap-8 text-white font-bold uppercase tracking-widest text-xs">
-                <li><a href="index.html">Home</a></li>
+            <ul class="flex justify-center gap-6 md:gap-8 text-white font-bold uppercase tracking-widest text-[10px] md:text-xs">
+                <li><a href="index.html" class="hover:text-[#D2B48C] transition">Home</a></li>
                 <li><a href="materials.html" class="hover:text-[#D2B48C] transition">Materials</a></li>
                 <li><a href="calculator.html" class="text-[#D2B48C]">Calculator</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="max-w-xl mx-auto my-16 p-8 bg-white rounded-2xl shadow-2xl border-t-8 border-[#D2B48C]">
-        <h2 class="text-3xl font-black text-[#5D4037] mb-8 text-center uppercase tracking-tight">Material Calculator</h2>
+    <main class="max-w-4xl mx-auto py-12 px-4 min-h-[60vh]">
         
-        <div class="space-y-6">
-            <div>
-                <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Area Shape</label>
-                <select id="shape" onchange="toggleInputs()" class="w-full p-4 border-2 border-gray-100 rounded-lg outline-none focus:border-[#D2B48C]">
-                    <option value="rect">Rectangle / Square</option>
-                    <option value="circle">Circle / Round</option>
-                </select>
+        <section class="mb-10 bg-[#5D4037] text-white p-6 rounded-xl shadow-lg border-l-8 border-[#D2B48C]">
+            <div class="flex items-start gap-4">
+                <div class="hidden md:block bg-[#D2B48C] text-[#5D4037] p-2 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="text-[#D2B48C] font-black uppercase text-xs tracking-widest mb-1">Estimation Notice</h4>
+                    <p class="text-gray-200 text-sm leading-relaxed">
+                        This calculator is intended to provide an estimate of the product needed for your project. Please note that landscape elevation changes and other terrain factors can affect final results. For the most accurate calculation, please contact our team directly.
+                    </p>
+                </div>
             </div>
+        </section>
 
-            <div id="rect-inputs" class="grid grid-cols-2 gap-4">
-                <div><label class="text-xs font-bold">Length (ft)</label><input type="number" id="length" class="w-full p-3 border rounded-lg mt-1"></div>
-                <div><label class="text-xs font-bold">Width (ft)</label><input type="number" id="width" class="w-full p-3 border rounded-lg mt-1"></div>
-            </div>
+        <div class="bg-white p-8 rounded-2xl shadow-xl border-t-8 border-[#D2B48C]">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-[10px] font-black uppercase text-gray-400 mb-2 tracking-widest">Project Shape</label>
+                        <select id="shape" onchange="toggleInputs()" class="w-full border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C] transition">
+                            <option value="rect">Rectangle / Square</option>
+                            <option value="circle">Circular / Round</option>
+                            <option value="triangle">Triangle / Corner</option>
+                        </select>
+                    </div>
 
-            <div id="circle-inputs" class="hidden">
-                <label class="text-xs font-bold">Radius (ft)</label><input type="number" id="radius" class="w-full p-3 border rounded-lg mt-1 w-full">
-            </div>
+                    <div>
+                        <label class="block text-[10px] font-black uppercase text-gray-400 mb-2 tracking-widest">Material Type</label>
+                        <select id="mat-select" class="w-full border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C] transition">
+                            </select>
+                    </div>
 
-            <div>
-                <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Depth (Inches)</label>
-                <input type="number" id="depth" value="2" class="w-full p-3 border rounded-lg">
-            </div>
+                    <div id="rect-inputs" class="grid grid-cols-2 gap-4">
+                        <input type="number" id="length" placeholder="Length (ft)" class="border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C]">
+                        <input type="number" id="width" placeholder="Width (ft)" class="border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C]">
+                    </div>
 
-            <div>
-                <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Select Material</label>
-                <select id="mat-select" class="w-full p-4 border-2 border-gray-100 rounded-lg outline-none focus:border-[#D2B48C]">
-                    <option value="1.5">Coronado Brown Rock</option>
-                    <option value="1.2">Topsoil / Fill Dirt</option>
-                    <option value="1.4">3/4" Minus Gravel</option>
-                </select>
-            </div>
+                    <div id="circle-inputs" class="hidden">
+                        <input type="number" id="radius" placeholder="Radius (ft)" class="w-full border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C]">
+                    </div>
 
-            <button onclick="runMath()" class="w-full bg-[#5D4037] text-white py-5 font-black rounded-xl uppercase tracking-[0.2em] shadow-lg hover:bg-[#D2B48C] hover:text-[#5D4037] transition duration-300">
-                Calculate Tonnage
-            </button>
+                    <div id="triangle-inputs" class="hidden grid grid-cols-2 gap-4">
+                        <input type="number" id="base" placeholder="Base (ft)" class="border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C]">
+                        <input type="number" id="height" placeholder="Height (ft)" class="border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C]">
+                    </div>
 
-            <div id="calc-result" class="hidden mt-8 p-6 bg-[#F5F5DC] rounded-xl text-center">
-                <p class="text-gray-500 text-xs font-bold uppercase">Estimated Total Needed</p>
-                <h4 id="result-text" class="text-4xl font-black text-[#5D4037]">0.00 Tons</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="number" id="depth" placeholder="Depth (inches)" class="border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C]">
+                        <select id="waste-factor" class="border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-[#D2B48C]">
+                            <option value="1.0">0% Waste</option>
+                            <option value="1.05">5% Waste</option>
+                            <option value="1.10" selected>10% Waste (Rec.)</option>
+                            <option value="1.15">15% Waste</option>
+                        </select>
+                    </div>
+
+                    <button onclick="runMath()" class="w-full bg-[#5D4037] text-white py-4 font-black rounded-xl uppercase tracking-widest hover:bg-[#D2B48C] hover:text-[#5D4037] transition duration-300 shadow-xl">
+                        Calculate Tonnage
+                    </button>
+                </div>
+
+                <div id="calc-result" class="hidden flex flex-col items-center justify-center bg-[#F5F5DC] rounded-2xl p-10 border-4 border-white shadow-inner">
+                    <h3 class="text-[10px] font-black uppercase text-gray-400 mb-2 tracking-[0.2em]">Required Tonnage</h3>
+                    <div id="result-text" class="text-6xl font-black text-[#5D4037] tracking-tighter">0.00 Tons</div>
+                    
+                    <div class="mt-8 pt-6 border-t border-[#D2B48C]/30 text-center">
+                        <p class="text-[11px] text-[#5D4037] font-bold uppercase tracking-widest">Delivery Note</p>
+                        <p class="text-[10px] text-gray-500 mt-2 leading-relaxed">
+                            Complimentary delivery on 10+ tons. <br>
+                            Under 10 tons? Call for distance-based pricing.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-[#5D4037] py-12 text-center text-[10px] text-gray-400 uppercase tracking-[0.3em]">
+    <footer class="bg-[#5D4037] py-12 text-center text-[10px] text-gray-400 uppercase tracking-[0.3em] px-4">
         <p>© 2026 Scott Dump Truck & Tractor Service</p>
-        <p class="mt-4 text-white">Infrastructure by <a href="https://theory-solutions.com" class="font-bold underline hover:text-[#D2B48C]">Theory Solutions</a></p>
+        <p class="mt-4 text-white">Infrastructure by <a href="#" class="font-bold underline hover:text-[#D2B48C]">Theory Solutions</a></p>
     </footer>
 
     <script src="script.js"></script>

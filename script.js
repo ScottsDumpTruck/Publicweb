@@ -1,4 +1,4 @@
-// --- DATA CONFIGURATION ---
+// --- 1. DATA CONFIGURATION: GALLERY ---
 const projectAssets = [
     { type: 'img', src: 'images/slide1.jpeg', caption: '' },
     { type: 'img', src: 'images/slide2.jpeg', caption: '' },
@@ -6,103 +6,80 @@ const projectAssets = [
     { type: 'img', src: 'images/slide4.jpeg', caption: '' },
     { type: 'img', src: 'images/slide5.jpeg', caption: '' },
     { type: 'img', src: 'images/slide6.jpeg', caption: '' },
-    { type: 'img', src: 'images/slide7.jpeg', caption: '' },
-    { type: 'img', src: 'images/38_screened_Apache_red.png', caption: '' },
-    { type: 'img', src: 'images/Apache_red_boulders.png', caption: '' }
+    { type: 'img', src: 'images/slide7.jpeg', caption: '' }
 ];
 
+// --- 2. DATA CONFIGURATION: MATERIALS ---
 const materialsList = [
-    // --- Construction Aggregate ---
-    { name: "ABC Non-Spec", category: "Construction Aggregate", price: "$35/ton", density: 1.5, img: "images/abc-nonspec.jpg" },
-    { name: "ABC Spec", category: "Construction Aggregate", price: "$40/ton", density: 1.5, img: "images/abc-spec.jpg" },
+    // Construction Aggregate
+    { name: "ABC (Spec/Non-Spec)", category: "Construction Aggregate", price: "$40/ton", density: 1.5, img: "images/ABC.png" },
+    { name: "1/4\" Minus Desert Brown", category: "Construction Aggregate", price: "$35/ton", density: 1.5, img: "images/Minus_desert_brown.png" },
 
-    // --- Decorative Aggregate ---
-    { name: "Apache Red (All Sizes)", category: "Decorative Aggregate", price: "$65/ton", density: 1.5, img: "images/38_screened_Apache_red.png" },
-    { name: "Coronado Brown (All Sizes)", category: "Decorative Aggregate", price: "$70/ton", density: 1.5, img: "images/3-8_Coronado_Brown.png" },
+    // Decorative Aggregate
+    { name: "3/8\" Screened Apache Red", category: "Decorative Aggregate", price: "$65/ton", density: 1.5, img: "images/38_screened_Apache_red.png" },
+    { name: "1/2\" Screened Apache Red", category: "Decorative Aggregate", price: "$65/ton", density: 1.5, img: "images/1-2_screened_apache_red.png" },
+    { name: "1\" Screened Apache Red", category: "Decorative Aggregate", price: "$65/ton", density: 1.2, img: "images/1_screened_apache_red.png" },
+    { name: "3/8\" Coronado Brown", category: "Decorative Aggregate", price: "$70/ton", density: 1.5, img: "images/3-8_Coronado_Brown.png" },
+    { name: "1/2\" Coronado Brown", category: "Decorative Aggregate", price: "$70/ton", density: 1.2, img: "images/1-2_Corondado_brown.png" },
+    { name: "1\" Coronado Brown", category: "Decorative Aggregate", price: "$70/ton", density: 1.2, img: "images/1_coronado_brown.png" },
+    { name: "3/8\" Desert Brown", category: "Decorative Aggregate", price: "$65/ton", density: 1.5, img: "images/3-8_Desert_Brown.png" },
+    { name: "1/2\" Desert Brown", category: "Decorative Aggregate", price: "$75/ton", density: 1.2, img: "images/1-2_Desert_Brown.png" },
+    { name: "3/4\" Desert Brown Gravel", category: "Decorative Aggregate", price: "$75/ton", density: 1.2, img: "images/Desert_Brown_gravel.png" },
+    { name: "White Rock", category: "Decorative Aggregate", price: "$80/ton", density: 1.5, img: "images/Whiterock.jpeg" },
+    { name: "Apache Red Boulders", category: "Decorative Aggregate", price: "$50 - $500 each", density: 1.2, img: "images/Apache_red_boulders.png" },
+    { name: "Coronado Brown Boulders", category: "Decorative Aggregate", price: "$25 - $500 each", density: 1.5, img: "images/Corondado_brown_boulders.png" },
 
-    // --- Sand ---
-    { name: "Mortar Sand", category: "Sand", price: "$45/ton", density: 1.3, img: "images/mortar-sand.jpg" },
-    { name: "Concrete Sand", category: "Sand", price: "$45/ton", density: 1.3, img: "images/concrete-sand.jpg" },
+    // Sand
+    { name: "Mortar Sand", category: "Sand", price: "$55/ton", density: 1.3, img: "images/Mortarsand.png" },
+    { name: "Concrete Sand", category: "Sand", price: "$50/ton", density: 1.3, img: "images/Concretesand.png" },
 
-    // --- Soil ---
-    { name: "Fill Dirt", category: "Soil", price: "$240/15 tons (delivered)", density: 1.2, img: "images/filldirt.jpeg" },
+    // Soil (FIXED IMAGE: Fill dirt.png)
+    { name: "Fill Dirt", category: "Soil", price: "$20.00/ton or $240.00/15 tons", density: 1.2, img: "images/Fill dirt.png" },
 
-    // --- Salt River Rock ---
-    { name: "1\" - 3\" River Rock", category: "Salt River Rock", price: "$80/ton", density: 1.2, img: "images/riverrock.jpeg" },
-    { name: "6\" - 12\" River Rock", category: "Salt River Rock", price: "$85/ton", density: 1.2, img: "images/riverrock6-12.jpg" },
-    { name: "12\" - 24\" River Rock", category: "Salt River Rock", price: "$90/ton", density: 1.2, img: "images/riverrock12-24.jpg" },
+    // Salt River Rock
+    { name: "River Rock", category: "Salt River Rock", price: "$80/ton", density: 1.2, img: "images/riverrock.jpeg" },
+    { name: "4\" - 12\" River Rock", category: "Salt River Rock", price: "$75/ton", density: 1.2, img: "images/4-12riverrock.png" },
 
-    // --- Rip Rap ---
-    { name: "1\" - 3\" Coronado Brown Rip Rap", category: "Rip Rap", price: "$65/ton", density: 1.5, img: "images/1-3_Apache_red_rip_rap.png" },
+    // Rip Rap
+    { name: "1\" - 3\" Apache Red Rip Rap", category: "Rip Rap", price: "$65/ton", density: 1.5, img: "images/1-3_Apache_red_rip_rap.png" },
     { name: "4\" - 12\" Coronado Brown Rip Rap", category: "Rip Rap", price: "$70/ton", density: 1.2, img: "images/4-12_Corondado_brown_rip_rap.png" },
-    { name: "12\" - 24\" Coronado Brown Rip Rap", category: "Rip Rap", price: "$75/ton", density: 1.2, img: "images/12-24_cb_riprap.jpg" }
+    { name: "General Rip Rap", category: "Rip Rap", price: "$70/ton", density: 1.2, img: "images/riprap.jpeg" }
 ];
 
-// --- INITIALIZATION ---
+// --- 3. LOGIC & STATE ---
+let currentFilteredList = [];
+let lightboxIndex = 0;
+
 window.onload = () => {
     if (document.getElementById('carousel-track')) initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
 };
 
-// --- ROTATING GALLERY LOGIC ---
-let currentIndex = Math.floor(Math.random() * projectAssets.length);
-function initCarousel() {
-    const rotate = () => {
-        const track = document.getElementById('carousel-track');
-        const caption = document.getElementById('carousel-caption');
-        if (!track || !caption) return;
-
-        const item = projectAssets[currentIndex];
-        track.style.opacity = 0;
-        setTimeout(() => {
-            track.innerHTML = item.type === 'img' 
-                ? `<img src="${item.src}" class="w-full h-full object-cover">`
-                : `<video src="${item.src}" class="w-full h-full object-cover" autoplay muted loop></video>`;
-            caption.innerText = item.caption;
-            track.style.opacity = 1;
-            currentIndex = (currentIndex + 1) % projectAssets.length;
-        }, 800);
-    };
-    rotate();
-    setInterval(rotate, 5000);
-}
-
-// --- CATEGORY HUB & FILTER LOGIC ---
 function filterMaterials(categoryName) {
     const hub = document.getElementById('category-hub');
     const results = document.getElementById('results-view');
     const grid = document.getElementById('materials-grid');
     const title = document.getElementById('category-title');
 
-    if (!hub || !results || !grid) return;
-
-    // Reset grid and set dynamic title
     grid.innerHTML = '';
-    if (title) title.innerText = categoryName;
+    title.innerText = categoryName;
+    currentFilteredList = materialsList.filter(m => m.category === categoryName);
 
-    // Filter items based on the hub tile clicked
-    const filtered = materialsList.filter(m => m.category === categoryName);
-
-    filtered.forEach(m => {
+    currentFilteredList.forEach((m, index) => {
         const tile = document.createElement('div');
         tile.className = "material-tile bg-white rounded-xl overflow-hidden shadow-lg border-b-4 border-[#D2B48C]";
-        
         tile.innerHTML = `
-            <div class="h-48 overflow-hidden cursor-pointer">
-                <a href="${m.img}" target="_blank">
-                    <img src="${m.img}" alt="${m.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                </a>
+            <div class="h-48 overflow-hidden cursor-pointer" onclick="openLightbox(${index})">
+                <img src="${m.img}" alt="${m.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
             </div>
             <div class="p-4 text-center">
-                <h4 class="font-bold text-[#5D4037] uppercase tracking-tight text-sm">${m.name}</h4>
+                <h4 class="font-bold text-[#5D4037] uppercase text-sm">${m.name}</h4>
                 <p class="text-[#D2B48C] font-black mt-1">${m.price}</p>
-                <p class="text-[10px] text-gray-400 mt-2 uppercase">Tap image to zoom</p>
             </div>
         `;
         grid.appendChild(tile);
     });
 
-    // View Switching Logic
     hub.classList.add('hidden');
     results.classList.remove('hidden');
     window.scrollTo(0,0);
@@ -113,50 +90,81 @@ function showHub() {
     document.getElementById('results-view').classList.add('hidden');
 }
 
-// --- CALCULATOR LOGIC ---
+function openLightbox(index) {
+    lightboxIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+function changeImage(step) {
+    lightboxIndex = (lightboxIndex + step + currentFilteredList.length) % currentFilteredList.length;
+    updateLightbox();
+}
+
+function updateLightbox() {
+    const item = currentFilteredList[lightboxIndex];
+    document.getElementById('lightbox-img').src = item.img;
+    document.getElementById('lightbox-name').innerText = item.name;
+    document.getElementById('lightbox-price').innerText = item.price;
+}
+
 function populateCalculator() {
     const select = document.getElementById('mat-select');
     if (!select) return;
-    
     select.innerHTML = ''; 
     materialsList.forEach(m => {
-        // Exclude specific per-item boulders from volume math
-        if (!m.name.includes("Boulders")) {
-            const opt = document.createElement('option');
-            opt.value = m.density;
-            opt.innerText = m.name;
-            select.appendChild(opt);
-        }
+        const opt = document.createElement('option');
+        opt.value = m.density;
+        opt.innerText = m.name;
+        select.appendChild(opt);
     });
 }
 
 function toggleInputs() {
-    const isCircle = document.getElementById('shape').value === 'circle';
-    document.getElementById('rect-inputs').classList.toggle('hidden', isCircle);
-    document.getElementById('circle-inputs').classList.toggle('hidden', !isCircle);
+    const shape = document.getElementById('shape').value;
+    document.getElementById('rect-inputs').classList.toggle('hidden', shape !== 'rect');
+    document.getElementById('circle-inputs').classList.toggle('hidden', shape !== 'circle');
+    document.getElementById('triangle-inputs').classList.toggle('hidden', shape !== 'triangle');
 }
 
 function runMath() {
     const shape = document.getElementById('shape').value;
     const depth = parseFloat(document.getElementById('depth').value) || 0;
     const density = parseFloat(document.getElementById('mat-select').value);
+    const waste = parseFloat(document.getElementById('waste-factor').value);
     let area = 0;
 
     if (shape === 'rect') {
-        const length = parseFloat(document.getElementById('length').value) || 0;
-        const width = parseFloat(document.getElementById('width').value) || 0;
-        area = length * width;
-    } else {
-        const radius = parseFloat(document.getElementById('radius').value) || 0;
-        area = Math.PI * Math.pow(radius, 2);
+        area = (parseFloat(document.getElementById('length').value) || 0) * (parseFloat(document.getElementById('width').value) || 0);
+    } else if (shape === 'circle') {
+        area = Math.PI * Math.pow((parseFloat(document.getElementById('radius').value) || 0), 2);
+    } else if (shape === 'triangle') {
+        area = ((parseFloat(document.getElementById('base').value) || 0) * (parseFloat(document.getElementById('height').value) || 0)) / 2;
     }
 
-    // Standard Tonnage Formula: (Area * (Depth/12) / 27) * Density
-    const tons = (area * (depth / 12) / 27) * density;
-    const resultDisplay = document.getElementById('result-text');
-    
-    if (resultDisplay) {
-        resultDisplay.innerText = tons.toFixed(2) + " Tons";
-        document.getElementById('calc-result').classList.remove('hidden');
-    }
+    const tons = (area * (depth / 12) / 27) * density * waste;
+    document.getElementById('result-text').innerText = tons.toFixed(2) + " Tons";
+    document.getElementById('calc-result').classList.remove('hidden');
+}
+
+function initCarousel() {
+    let carIndex = Math.floor(Math.random() * projectAssets.length);
+    const rotate = () => {
+        const track = document.getElementById('carousel-track');
+        if (!track) return;
+        track.style.opacity = 0;
+        setTimeout(() => {
+            track.innerHTML = `<img src="${projectAssets[carIndex].src}" class="w-full h-full object-cover">`;
+            track.style.opacity = 1;
+            carIndex = (carIndex + 1) % projectAssets.length;
+        }, 800);
+    };
+    rotate();
+    setInterval(rotate, 5000);
 }
