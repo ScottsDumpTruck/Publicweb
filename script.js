@@ -1,4 +1,6 @@
 // --- 1. DATA CONFIGURATION: GALLERY ---
+// Verified: GitHub folder is lowercase "images/". 
+// Verified: Local files are vid1.mp4, vid2.mp4, and slide1-7.jpeg.
 const projectAssets = [
     { type: 'video', src: 'images/vid1.mp4', caption: '' },
     { type: 'video', src: 'images/vid2.mp4', caption: '' },
@@ -40,15 +42,15 @@ const materialsList = [
 // --- 3. LOGIC & STATE ---
 let currentFilteredList = [];
 let lightboxIndex = 0;
-let carouselTimeout; // Store timeout to prevent overlaps
+let carouselTimeout;
 
 window.onload = () => {
     if (document.getElementById('carousel-track')) initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
 };
 
-/** * SMART CAROUSEL LOGIC
- * Automatically waits for videos to finish before rotating.
+/** * SMART CAROUSEL 
+ * Listens for video completion before rotating.
  */
 function initCarousel() {
     let carIndex = 0; 
@@ -59,33 +61,32 @@ function initCarousel() {
         const asset = projectAssets[carIndex];
         track.style.opacity = 0;
 
-        // Small delay for the fade-out transition
         setTimeout(() => {
-            track.innerHTML = ''; // Clear container
+            track.innerHTML = ''; 
 
             if (asset.type === 'video') {
                 const video = document.createElement('video');
                 video.src = asset.src;
                 video.autoplay = true;
                 video.muted = true;
-                video.playsInline = true;
+                video.playsInline = true; // Required for mobile
                 video.className = "w-full h-full object-cover";
                 
-                // Smart trigger: Go to next slide when video ends
+                // Rotate when video finishes
                 video.onended = () => {
                     carouselTimeout = setTimeout(rotate, 500);
                 };
 
-                // Fallback: If video fails to load or play, skip after 10s
+                // Skip if file not found
                 video.onerror = () => {
-                    carouselTimeout = setTimeout(rotate, 2000);
+                    console.error("Failed to load video:", asset.src);
+                    carouselTimeout = setTimeout(rotate, 1000);
                 };
                 
                 track.appendChild(video);
             } else {
                 track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
-                // Standard timer for images (5 seconds)
-                carouselTimeout = setTimeout(rotate, 5000);
+                carouselTimeout = setTimeout(rotate, 5000); // 5s for images
             }
             
             track.style.opacity = 1;
@@ -96,7 +97,7 @@ function initCarousel() {
     rotate();
 }
 
-// --- MATERIALS GALLERY LOGIC ---
+// --- MATERIALS GALLERY ---
 function filterMaterials(categoryName) {
     const hub = document.getElementById('category-hub');
     const results = document.getElementById('results-view');
@@ -157,7 +158,7 @@ function updateLightbox() {
     document.getElementById('lightbox-price').innerText = item.price;
 }
 
-// --- CALCULATOR LOGIC ---
+// --- CALCULATOR ---
 function populateCalculator() {
     const select = document.getElementById('mat-select');
     if (!select) return;
@@ -192,7 +193,6 @@ function runMath() {
         area = ((parseFloat(document.getElementById('base').value) || 0) * (parseFloat(document.getElementById('height').value) || 0)) / 2;
     }
 
-    // Formula to calculate tons from volume
     const tons = (area * (depth / 12) / 27) * density * waste;
     document.getElementById('result-text').innerText = tons.toFixed(2) + " Tons";
     document.getElementById('calc-result').classList.remove('hidden');
