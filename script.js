@@ -1,5 +1,4 @@
 // --- 1. DATA CONFIGURATION: GALLERY ---
-// Matches the lowercase 'images' folder on your GitHub repository
 const projectAssets = [
     { type: 'video', src: 'images/vid1.mp4', caption: '' },
     { type: 'video', src: 'images/vid2.mp4', caption: '' },
@@ -146,8 +145,8 @@ function runMath() {
     document.getElementById('calc-result').classList.remove('hidden');
 }
 
-/** * UPDATED CAROUSEL: Fixed for Desktop browsers.
- * Uses a 20-second timer to prevent "short snips" and forced reload for desktop.
+/** * FINAL DESKTOP-COMPATIBLE CAROUSEL
+ * Fixed: Explicitly handles muted autoplay and source loading for desktop Chrome/Edge.
  */
 function initCarousel() {
     let carIndex = 0;
@@ -160,12 +159,18 @@ function initCarousel() {
         
         setTimeout(() => {
             if (asset.type === 'video') {
-                // 'muted' and 'playsinline' are mandatory for desktop autoplay
-                track.innerHTML = `<video id="active-video" src="${asset.src}" autoplay muted loop playsinline class="w-full h-full object-cover"></video>`;
+                // Must include 'muted' and 'playsinline' for desktop browsers to allow autoplay
+                track.innerHTML = `
+                    <video id="carousel-vid" autoplay muted loop playsinline class="w-full h-full object-cover">
+                        <source src="${asset.src}" type="video/mp4">
+                    </video>`;
                 
-                // desktop fix: force the video to load the source properly
-                const videoEl = document.getElementById('active-video');
-                if (videoEl) videoEl.load(); 
+                // desktop fix: explicitly trigger load and play
+                const vid = document.getElementById('carousel-vid');
+                if (vid) {
+                    vid.load();
+                    vid.play().catch(e => console.log("Desktop autoplay blocked: ", e));
+                }
             } else {
                 track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
             }
@@ -175,6 +180,6 @@ function initCarousel() {
     };
 
     rotate();
-    // Set to 30 seconds (30000ms) to ensure desktop has time to buffer and play
-    setInterval(rotate, 30000); 
+    // 15 seconds is usually the sweet spot for landscaping project demos
+    setInterval(rotate, 15000); 
 }
