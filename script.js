@@ -1,4 +1,5 @@
 // --- 1. DATA CONFIGURATION: GALLERY ---
+// Matches the lowercase 'images' folder on your GitHub repository
 const projectAssets = [
     { type: 'video', src: 'images/vid1.mp4', caption: '' },
     { type: 'video', src: 'images/vid2.mp4', caption: '' },
@@ -47,11 +48,11 @@ window.onload = () => {
     if (document.getElementById('carousel-track')) initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
 
-    // Chrome gesture unlock: "wakes up" media as soon as user interacts with page
+    // Chrome Global Gesture Unlock
     document.body.addEventListener('click', () => {
         const vid = document.getElementById('active-vid');
         if (vid && vid.paused) {
-            vid.play().catch(e => console.log("Chrome block handled.", e));
+            vid.play().catch(e => console.log("User interaction required to play video.", e));
         }
     }, { once: true });
 };
@@ -64,7 +65,7 @@ function initCarousel() {
 
 function startCarouselTimer() {
     clearInterval(carouselInterval);
-    // Rotating every 15s to balance image viewing and video buffering
+    // Rotating every 15s to allow for video load time
     carouselInterval = setInterval(() => moveCarousel(1), 15000); 
 }
 
@@ -86,34 +87,41 @@ function renderCarouselItem() {
         track.innerHTML = ''; 
 
         if (asset.type === 'video') {
+            // Timestamp forces Chrome to treat the source as fresh
+            const videoUrl = asset.src + '?v=' + Date.now();
+            
             track.innerHTML = `
-                <div class="relative w-full h-full">
+                <div class="relative w-full h-full bg-black">
                     <video id="active-vid" autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover">
-                        <source src="${asset.src}" type="video/mp4">
+                        <source src="${videoUrl}" type="video/mp4">
                     </video>
-                    <div id="play-overlay" class="absolute inset-0 flex items-center justify-center bg-black/30 hidden cursor-pointer z-20">
-                        <div class="bg-white/90 p-4 rounded-full text-black font-bold shadow-lg">▶ CLICK TO VIEW</div>
+                    <div id="play-overlay" class="absolute inset-0 flex items-center justify-center bg-black/40 hidden cursor-pointer z-20">
+                        <div class="bg-white/90 p-4 rounded-full text-black font-extrabold shadow-lg">▶ CLICK TO VIEW</div>
                     </div>
                 </div>`;
             
             const vid = document.getElementById('active-vid');
             const overlay = document.getElementById('play-overlay');
 
-            const playPromise = vid.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(() => {
-                    overlay.classList.remove('hidden');
-                    overlay.onclick = () => {
-                        vid.play();
-                        overlay.classList.add('hidden');
-                    };
-                });
+            // Force Chrome to reload the media stream
+            if (vid) {
+                vid.load();
+                const playPromise = vid.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        overlay.classList.remove('hidden');
+                        overlay.onclick = () => {
+                            vid.play();
+                            overlay.classList.add('hidden');
+                        };
+                    });
+                }
             }
         } else {
             track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
         }
 
-        // AUTO-HIDE CAPTION LOGIC: Only shows if there is text
+        // Auto-Hide Caption logic
         if (captionEl) {
             if (asset.caption && asset.caption.trim() !== "") {
                 captionEl.innerText = asset.caption;
@@ -128,7 +136,7 @@ function renderCarouselItem() {
     }, 500);
 }
 
-// --- MATERIALS GALLERY & LIGHTBOX ---
+// --- MATERIALS & CALCULATOR LOGIC ---
 function filterMaterials(categoryName) {
     const hub = document.getElementById('category-hub');
     const results = document.getElementById('results-view');
@@ -189,7 +197,6 @@ function updateLightbox() {
     document.getElementById('lightbox-price').innerText = item.price;
 }
 
-// --- CALCULATOR ---
 function populateCalculator() {
     const select = document.getElementById('mat-select');
     if (!select) return;
