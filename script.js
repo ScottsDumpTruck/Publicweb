@@ -1,5 +1,4 @@
 // --- 1. DATA CONFIGURATION: GALLERY ---
-// Matches the lowercase 'images' folder on your GitHub repository
 const projectAssets = [
     { type: 'video', src: 'images/vid1.mp4', caption: '' },
     { type: 'video', src: 'images/vid2.mp4', caption: '' },
@@ -38,7 +37,7 @@ const materialsList = [
     { name: "General Rip Rap", category: "Rip Rap", price: "$70/ton", density: 1.2, img: "images/riprap.jpeg" }
 ];
 
-// --- 3. LOGIC & STATE ---
+// --- 3. GLOBAL STATE & INIT ---
 let currentFilteredList = [];
 let lightboxIndex = 0;
 let carIndex = 0; 
@@ -48,16 +47,16 @@ window.onload = () => {
     if (document.getElementById('carousel-track')) initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
 
-    // Chrome Global Gesture Unlock
+    // Chrome Interaction Unlock
     document.body.addEventListener('click', () => {
         const vid = document.getElementById('active-vid');
-        if (vid && vid.paused) {
-            vid.play().catch(e => console.log("User interaction required to play video.", e));
+        if (vid && vid.paused && !vid.classList.contains('hidden')) {
+            vid.play().catch(e => console.log("Chrome block handled."));
         }
     }, { once: true });
 };
 
-/** * CAROUSEL LOGIC */
+// --- 4. CAROUSEL LOGIC ---
 function initCarousel() {
     renderCarouselItem();
     startCarouselTimer();
@@ -65,7 +64,6 @@ function initCarousel() {
 
 function startCarouselTimer() {
     clearInterval(carouselInterval);
-    // Rotating every 15s to allow for video load time
     carouselInterval = setInterval(() => moveCarousel(1), 15000); 
 }
 
@@ -77,72 +75,54 @@ function moveCarousel(step) {
 
 function renderCarouselItem() {
     const track = document.getElementById('carousel-track');
+    const vid = document.getElementById('active-vid');
+    const img = document.getElementById('active-img');
+    const overlay = document.getElementById('play-overlay');
     const captionEl = document.getElementById('carousel-caption');
     const asset = projectAssets[carIndex];
-    if (!track) return;
+
+    if (!track || !vid || !img) return;
 
     track.style.opacity = 0;
     
     setTimeout(() => {
-        track.innerHTML = ''; 
+        vid.classList.add('hidden');
+        img.classList.add('hidden');
+        overlay.classList.add('hidden');
 
         if (asset.type === 'video') {
-            // Timestamp forces Chrome to treat the source as fresh
-            const videoUrl = asset.src + '?v=' + Date.now();
-            
-            track.innerHTML = `
-                <div class="relative w-full h-full bg-black">
-                    <video id="active-vid" autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover">
-                        <source src="${videoUrl}" type="video/mp4">
-                    </video>
-                    <div id="play-overlay" class="absolute inset-0 flex items-center justify-center bg-black/40 hidden cursor-pointer z-20">
-                        <div class="bg-white/90 p-4 rounded-full text-black font-extrabold shadow-lg">▶ CLICK TO VIEW</div>
-                    </div>
-                </div>`;
-            
-            const vid = document.getElementById('active-vid');
-            const overlay = document.getElementById('play-overlay');
-
-            // Force Chrome to reload the media stream
-            if (vid) {
-                vid.load();
-                const playPromise = vid.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {
-                        overlay.classList.remove('hidden');
-                        overlay.onclick = () => {
-                            vid.play();
-                            overlay.classList.add('hidden');
-                        };
-                    });
-                }
-            }
+            vid.src = asset.src + "?t=" + new Date().getTime(); // Bust Chrome cache
+            vid.classList.remove('hidden');
+            vid.load(); 
+            vid.play().catch(() => {
+                overlay.classList.remove('hidden');
+                overlay.onclick = () => { vid.play(); overlay.classList.add('hidden'); };
+            });
         } else {
-            track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
+            img.src = asset.src;
+            img.classList.remove('hidden');
         }
 
-        // Auto-Hide Caption logic
         if (captionEl) {
             if (asset.caption && asset.caption.trim() !== "") {
                 captionEl.innerText = asset.caption;
                 captionEl.classList.remove('hidden');
             } else {
-                captionEl.innerText = "";
                 captionEl.classList.add('hidden');
             }
         }
-        
         track.style.opacity = 1;
     }, 500);
 }
 
-// --- MATERIALS & CALCULATOR LOGIC ---
+// --- 5. MATERIALS GALLERY LOGIC ---
 function filterMaterials(categoryName) {
     const hub = document.getElementById('category-hub');
     const results = document.getElementById('results-view');
     const grid = document.getElementById('materials-grid');
     const title = document.getElementById('category-title');
 
+    if (!grid) return;
     grid.innerHTML = '';
     title.innerText = categoryName;
     currentFilteredList = materialsList.filter(m => m.category === categoryName);
@@ -175,13 +155,19 @@ function showHub() {
 function openLightbox(index) {
     lightboxIndex = index;
     updateLightbox();
-    document.getElementById('lightbox').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeLightbox() {
-    document.getElementById('lightbox').classList.add('hidden');
-    document.body.style.overflow = 'auto';
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
 }
 
 function changeImage(step) {
@@ -192,11 +178,14 @@ function changeImage(step) {
 function updateLightbox() {
     const item = currentFilteredList[lightboxIndex];
     const img = document.getElementById('lightbox-img');
+    const name = document.getElementById('lightbox-name');
+    const price = document.getElementById('lightbox-price');
     if (img) img.src = item.img;
-    document.getElementById('lightbox-name').innerText = item.name;
-    document.getElementById('lightbox-price').innerText = item.price;
+    if (name) name.innerText = item.name;
+    if (price) price.innerText = item.price;
 }
 
+// --- 6. AGGREGATE CALCULATOR LOGIC ---
 function populateCalculator() {
     const select = document.getElementById('mat-select');
     if (!select) return;
@@ -224,14 +213,22 @@ function runMath() {
     let area = 0;
 
     if (shape === 'rect') {
-        area = (parseFloat(document.getElementById('length').value) || 0) * (parseFloat(document.getElementById('width').value) || 0);
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const w = parseFloat(document.getElementById('width').value) || 0;
+        area = l * w;
     } else if (shape === 'circle') {
-        area = Math.PI * Math.pow((parseFloat(document.getElementById('radius').value) || 0), 2);
+        const r = parseFloat(document.getElementById('radius').value) || 0;
+        area = Math.PI * Math.pow(r, 2);
     } else if (shape === 'triangle') {
-        area = ((parseFloat(document.getElementById('base').value) || 0) * (parseFloat(document.getElementById('height').value) || 0)) / 2;
+        const b = parseFloat(document.getElementById('base').value) || 0;
+        const h = parseFloat(document.getElementById('height').value) || 0;
+        area = (b * h) / 2;
     }
 
     const tons = (area * (depth / 12) / 27) * density * waste;
-    document.getElementById('result-text').innerText = tons.toFixed(2) + " Tons";
-    document.getElementById('calc-result').classList.remove('hidden');
+    const resText = document.getElementById('result-text');
+    const resDiv = document.getElementById('calc-result');
+    
+    if (resText) resText.innerText = tons.toFixed(2) + " Tons";
+    if (resDiv) resDiv.classList.remove('hidden');
 }
