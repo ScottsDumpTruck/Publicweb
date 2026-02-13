@@ -37,21 +37,21 @@ const materialsList = [
     { name: "General Rip Rap", category: "Rip Rap", price: "$70/ton", density: 1.2, img: "images/riprap.jpeg" }
 ];
 
-// --- 3. GLOBAL STATE & INIT ---
+// --- 3. GLOBAL STATE ---
 let currentFilteredList = [];
 let lightboxIndex = 0;
 let carIndex = 0; 
 let carouselInterval;
 
 window.onload = () => {
-    if (document.getElementById('carousel-track')) initCarousel();
+    initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
 
-    // Chrome Interaction Unlock
+    // Chrome Fix: "Wake up" video engine on first user click
     document.body.addEventListener('click', () => {
         const vid = document.getElementById('active-vid');
         if (vid && vid.paused && !vid.classList.contains('hidden')) {
-            vid.play().catch(e => console.log("Chrome block handled."));
+            vid.play().catch(() => {});
         }
     }, { once: true });
 };
@@ -82,7 +82,6 @@ function renderCarouselItem() {
     const asset = projectAssets[carIndex];
 
     if (!track || !vid || !img) return;
-
     track.style.opacity = 0;
     
     setTimeout(() => {
@@ -91,9 +90,10 @@ function renderCarouselItem() {
         overlay.classList.add('hidden');
 
         if (asset.type === 'video') {
-            vid.src = asset.src + "?t=" + new Date().getTime(); // Bust Chrome cache
+            // Timestamp prevents Chrome from loading a stale/black frame
+            vid.src = asset.src + "?t=" + new Date().getTime();
             vid.classList.remove('hidden');
-            vid.load(); 
+            vid.load();
             vid.play().catch(() => {
                 overlay.classList.remove('hidden');
                 overlay.onclick = () => { vid.play(); overlay.classList.add('hidden'); };
@@ -155,17 +155,17 @@ function showHub() {
 function openLightbox(index) {
     lightboxIndex = index;
     updateLightbox();
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        lightbox.classList.remove('hidden');
+    const lb = document.getElementById('lightbox');
+    if (lb) {
+        lb.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
 }
 
 function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        lightbox.classList.add('hidden');
+    const lb = document.getElementById('lightbox');
+    if (lb) {
+        lb.classList.add('hidden');
         document.body.style.overflow = 'auto';
     }
 }
@@ -228,7 +228,6 @@ function runMath() {
     const tons = (area * (depth / 12) / 27) * density * waste;
     const resText = document.getElementById('result-text');
     const resDiv = document.getElementById('calc-result');
-    
     if (resText) resText.innerText = tons.toFixed(2) + " Tons";
     if (resDiv) resDiv.classList.remove('hidden');
 }
