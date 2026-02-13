@@ -1,4 +1,4 @@
-// --- 1. DATA CONFIGURATION: GALLERY ---
+// --- 1. DATA CONFIGURATION ---
 const projectAssets = [
     { type: 'video', src: 'images/vid1.mp4', caption: '' },
     { type: 'video', src: 'images/vid2.mp4', caption: '' },
@@ -11,7 +11,6 @@ const projectAssets = [
     { type: 'img', src: 'images/slide7.jpeg', caption: '' }
 ];
 
-// --- 2. DATA CONFIGURATION: MATERIALS ---
 const materialsList = [
     { name: "ABC (Spec/Non-Spec)", category: "Construction Aggregate", price: "$40/ton", density: 1.5, img: "images/ABC.png" },
     { name: "1/4\" Minus Desert Brown", category: "Construction Aggregate", price: "$35/ton", density: 1.5, img: "images/Minus_desert_brown.png" },
@@ -37,7 +36,7 @@ const materialsList = [
     { name: "General Rip Rap", category: "Rip Rap", price: "$70/ton", density: 1.2, img: "images/riprap.jpeg" }
 ];
 
-// --- 3. GLOBAL STATE ---
+// --- 2. GLOBAL STATE ---
 let currentFilteredList = [];
 let lightboxIndex = 0;
 let carIndex = 0; 
@@ -47,16 +46,19 @@ window.onload = () => {
     initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
 
-    // Chrome Fix: "Wake up" video engine on first user click
-    document.body.addEventListener('click', () => {
-        const vid = document.getElementById('active-vid');
-        if (vid && vid.paused && !vid.classList.contains('hidden')) {
-            vid.play().catch(() => {});
-        }
-    }, { once: true });
+    // Chrome Global Unlock
+    document.body.addEventListener('mousedown', unlockMedia, { once: true });
+    document.body.addEventListener('touchstart', unlockMedia, { once: true });
 };
 
-// --- 4. CAROUSEL LOGIC ---
+function unlockMedia() {
+    const vid = document.getElementById('active-vid');
+    if (vid && vid.paused && !vid.classList.contains('hidden')) {
+        vid.play().catch(() => {});
+    }
+}
+
+// --- 3. CAROUSEL ---
 function initCarousel() {
     renderCarouselItem();
     startCarouselTimer();
@@ -82,6 +84,7 @@ function renderCarouselItem() {
     const asset = projectAssets[carIndex];
 
     if (!track || !vid || !img) return;
+
     track.style.opacity = 0;
     
     setTimeout(() => {
@@ -90,14 +93,18 @@ function renderCarouselItem() {
         overlay.classList.add('hidden');
 
         if (asset.type === 'video') {
-            // Timestamp prevents Chrome from loading a stale/black frame
-            vid.src = asset.src + "?t=" + new Date().getTime();
+            // Reset video state completely
+            vid.src = asset.src;
             vid.classList.remove('hidden');
             vid.load();
-            vid.play().catch(() => {
-                overlay.classList.remove('hidden');
-                overlay.onclick = () => { vid.play(); overlay.classList.add('hidden'); };
-            });
+
+            // The "Bastard-Proof" listener: only plays once data is actually buffered
+            vid.oncanplay = () => {
+                vid.play().catch(() => {
+                    overlay.classList.remove('hidden');
+                    overlay.onclick = () => { vid.play(); overlay.classList.add('hidden'); };
+                });
+            };
         } else {
             img.src = asset.src;
             img.classList.remove('hidden');
@@ -115,16 +122,12 @@ function renderCarouselItem() {
     }, 500);
 }
 
-// --- 5. MATERIALS GALLERY LOGIC ---
+// --- 4. GALLERY LOGIC ---
 function filterMaterials(categoryName) {
-    const hub = document.getElementById('category-hub');
-    const results = document.getElementById('results-view');
     const grid = document.getElementById('materials-grid');
-    const title = document.getElementById('category-title');
-
     if (!grid) return;
     grid.innerHTML = '';
-    title.innerText = categoryName;
+    document.getElementById('category-title').innerText = categoryName;
     currentFilteredList = materialsList.filter(m => m.category === categoryName);
 
     currentFilteredList.forEach((m, index) => {
@@ -141,9 +144,8 @@ function filterMaterials(categoryName) {
         `;
         grid.appendChild(tile);
     });
-
-    hub.classList.add('hidden');
-    results.classList.remove('hidden');
+    document.getElementById('category-hub').classList.add('hidden');
+    document.getElementById('results-view').classList.remove('hidden');
     window.scrollTo(0,0);
 }
 
@@ -155,19 +157,13 @@ function showHub() {
 function openLightbox(index) {
     lightboxIndex = index;
     updateLightbox();
-    const lb = document.getElementById('lightbox');
-    if (lb) {
-        lb.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
+    document.getElementById('lightbox').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
-    const lb = document.getElementById('lightbox');
-    if (lb) {
-        lb.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    }
+    document.getElementById('lightbox').classList.add('hidden');
+    document.body.style.overflow = 'auto';
 }
 
 function changeImage(step) {
@@ -177,15 +173,12 @@ function changeImage(step) {
 
 function updateLightbox() {
     const item = currentFilteredList[lightboxIndex];
-    const img = document.getElementById('lightbox-img');
-    const name = document.getElementById('lightbox-name');
-    const price = document.getElementById('lightbox-price');
-    if (img) img.src = item.img;
-    if (name) name.innerText = item.name;
-    if (price) price.innerText = item.price;
+    document.getElementById('lightbox-img').src = item.img;
+    document.getElementById('lightbox-name').innerText = item.name;
+    document.getElementById('lightbox-price').innerText = item.price;
 }
 
-// --- 6. AGGREGATE CALCULATOR LOGIC ---
+// --- 5. CALCULATOR LOGIC ---
 function populateCalculator() {
     const select = document.getElementById('mat-select');
     if (!select) return;
@@ -213,21 +206,14 @@ function runMath() {
     let area = 0;
 
     if (shape === 'rect') {
-        const l = parseFloat(document.getElementById('length').value) || 0;
-        const w = parseFloat(document.getElementById('width').value) || 0;
-        area = l * w;
+        area = (parseFloat(document.getElementById('length').value) || 0) * (parseFloat(document.getElementById('width').value) || 0);
     } else if (shape === 'circle') {
-        const r = parseFloat(document.getElementById('radius').value) || 0;
-        area = Math.PI * Math.pow(r, 2);
+        area = Math.PI * Math.pow((parseFloat(document.getElementById('radius').value) || 0), 2);
     } else if (shape === 'triangle') {
-        const b = parseFloat(document.getElementById('base').value) || 0;
-        const h = parseFloat(document.getElementById('height').value) || 0;
-        area = (b * h) / 2;
+        area = ((parseFloat(document.getElementById('base').value) || 0) * (parseFloat(document.getElementById('height').value) || 0)) / 2;
     }
 
     const tons = (area * (depth / 12) / 27) * density * waste;
-    const resText = document.getElementById('result-text');
-    const resDiv = document.getElementById('calc-result');
-    if (resText) resText.innerText = tons.toFixed(2) + " Tons";
-    if (resDiv) resDiv.classList.remove('hidden');
+    document.getElementById('result-text').innerText = tons.toFixed(2) + " Tons";
+    document.getElementById('calc-result').classList.remove('hidden');
 }
