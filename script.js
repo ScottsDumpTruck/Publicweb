@@ -167,5 +167,5 @@ function initCarousel() {
 
     rotate();
     // I increased this to 10 seconds (10000ms) to give your videos time to play
-    setInterval(rotate, 10000); 
+    setInterval(rotate, 30000); 
 }
