@@ -40,12 +40,95 @@ const materialsList = [
 // --- 3. LOGIC & STATE ---
 let currentFilteredList = [];
 let lightboxIndex = 0;
+let carIndex = 0; 
+let carouselInterval;
 
 window.onload = () => {
     if (document.getElementById('carousel-track')) initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
+
+    // Chrome gesture unlock: "wakes up" media as soon as user interacts with page
+    document.body.addEventListener('click', () => {
+        const vid = document.getElementById('active-vid');
+        if (vid && vid.paused) {
+            vid.play().catch(e => console.log("Chrome block handled.", e));
+        }
+    }, { once: true });
 };
 
+/** * CAROUSEL LOGIC */
+function initCarousel() {
+    renderCarouselItem();
+    startCarouselTimer();
+}
+
+function startCarouselTimer() {
+    clearInterval(carouselInterval);
+    // Rotating every 15s to balance image viewing and video buffering
+    carouselInterval = setInterval(() => moveCarousel(1), 15000); 
+}
+
+function moveCarousel(step) {
+    carIndex = (carIndex + step + projectAssets.length) % projectAssets.length;
+    renderCarouselItem();
+    startCarouselTimer(); 
+}
+
+function renderCarouselItem() {
+    const track = document.getElementById('carousel-track');
+    const captionEl = document.getElementById('carousel-caption');
+    const asset = projectAssets[carIndex];
+    if (!track) return;
+
+    track.style.opacity = 0;
+    
+    setTimeout(() => {
+        track.innerHTML = ''; 
+
+        if (asset.type === 'video') {
+            track.innerHTML = `
+                <div class="relative w-full h-full">
+                    <video id="active-vid" autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover">
+                        <source src="${asset.src}" type="video/mp4">
+                    </video>
+                    <div id="play-overlay" class="absolute inset-0 flex items-center justify-center bg-black/30 hidden cursor-pointer z-20">
+                        <div class="bg-white/90 p-4 rounded-full text-black font-bold shadow-lg">▶ CLICK TO VIEW</div>
+                    </div>
+                </div>`;
+            
+            const vid = document.getElementById('active-vid');
+            const overlay = document.getElementById('play-overlay');
+
+            const playPromise = vid.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    overlay.classList.remove('hidden');
+                    overlay.onclick = () => {
+                        vid.play();
+                        overlay.classList.add('hidden');
+                    };
+                });
+            }
+        } else {
+            track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
+        }
+
+        // AUTO-HIDE CAPTION LOGIC: Only shows if there is text
+        if (captionEl) {
+            if (asset.caption && asset.caption.trim() !== "") {
+                captionEl.innerText = asset.caption;
+                captionEl.classList.remove('hidden');
+            } else {
+                captionEl.innerText = "";
+                captionEl.classList.add('hidden');
+            }
+        }
+        
+        track.style.opacity = 1;
+    }, 500);
+}
+
+// --- MATERIALS GALLERY & LIGHTBOX ---
 function filterMaterials(categoryName) {
     const hub = document.getElementById('category-hub');
     const results = document.getElementById('results-view');
@@ -106,6 +189,7 @@ function updateLightbox() {
     document.getElementById('lightbox-price').innerText = item.price;
 }
 
+// --- CALCULATOR ---
 function populateCalculator() {
     const select = document.getElementById('mat-select');
     if (!select) return;
@@ -143,43 +227,4 @@ function runMath() {
     const tons = (area * (depth / 12) / 27) * density * waste;
     document.getElementById('result-text').innerText = tons.toFixed(2) + " Tons";
     document.getElementById('calc-result').classList.remove('hidden');
-}
-
-/** * FINAL DESKTOP-COMPATIBLE CAROUSEL
- * Fixed: Explicitly handles muted autoplay and source loading for desktop Chrome/Edge.
- */
-function initCarousel() {
-    let carIndex = 0;
-    const track = document.getElementById('carousel-track');
-    if (!track) return;
-
-    const rotate = () => {
-        const asset = projectAssets[carIndex];
-        track.style.opacity = 0;
-        
-        setTimeout(() => {
-            if (asset.type === 'video') {
-                // Must include 'muted' and 'playsinline' for desktop browsers to allow autoplay
-                track.innerHTML = `
-                    <video id="carousel-vid" autoplay muted loop playsinline class="w-full h-full object-cover">
-                        <source src="${asset.src}" type="video/mp4">
-                    </video>`;
-                
-                // desktop fix: explicitly trigger load and play
-                const vid = document.getElementById('carousel-vid');
-                if (vid) {
-                    vid.load();
-                    vid.play().catch(e => console.log("Desktop autoplay blocked: ", e));
-                }
-            } else {
-                track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
-            }
-            track.style.opacity = 1;
-            carIndex = (carIndex + 1) % projectAssets.length;
-        }, 800);
-    };
-
-    rotate();
-    // 15 seconds is usually the sweet spot for landscaping project demos
-    setInterval(rotate, 15000); 
 }
