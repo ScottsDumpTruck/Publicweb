@@ -1,5 +1,7 @@
 // --- 1. DATA CONFIGURATION: GALLERY ---
 const projectAssets = [
+    { type: 'video', src: 'images/vid1.mp4', caption: '' },
+    { type: 'video', src: 'images/vid2.mp4', caption: '' },
     { type: 'img', src: 'images/slide1.jpeg', caption: '' },
     { type: 'img', src: 'images/slide2.jpeg', caption: '' },
     { type: 'img', src: 'images/slide3.jpeg', caption: '' },
@@ -11,11 +13,8 @@ const projectAssets = [
 
 // --- 2. DATA CONFIGURATION: MATERIALS ---
 const materialsList = [
-    // Construction Aggregate
     { name: "ABC (Spec/Non-Spec)", category: "Construction Aggregate", price: "$40/ton", density: 1.5, img: "images/ABC.png" },
     { name: "1/4\" Minus Desert Brown", category: "Construction Aggregate", price: "$35/ton", density: 1.5, img: "images/Minus_desert_brown.png" },
-
-    // Decorative Aggregate
     { name: "3/8\" Screened Apache Red", category: "Decorative Aggregate", price: "$65/ton", density: 1.5, img: "images/38_screened_Apache_red.png" },
     { name: "1/2\" Screened Apache Red", category: "Decorative Aggregate", price: "$65/ton", density: 1.5, img: "images/1-2_screened_apache_red.png" },
     { name: "1\" Screened Apache Red", category: "Decorative Aggregate", price: "$65/ton", density: 1.2, img: "images/1_screened_apache_red.png" },
@@ -28,19 +27,11 @@ const materialsList = [
     { name: "White Rock", category: "Decorative Aggregate", price: "$80/ton", density: 1.5, img: "images/Whiterock.jpeg" },
     { name: "Apache Red Boulders", category: "Decorative Aggregate", price: "$50 - $500 each", density: 1.2, img: "images/Apache_red_boulders.png" },
     { name: "Coronado Brown Boulders", category: "Decorative Aggregate", price: "$25 - $500 each", density: 1.5, img: "images/Corondado_brown_boulders.png" },
-
-    // Sand
     { name: "Mortar Sand", category: "Sand", price: "$55/ton", density: 1.3, img: "images/Mortarsand.png" },
     { name: "Concrete Sand", category: "Sand", price: "$50/ton", density: 1.3, img: "images/Concretesand.png" },
-
-    // Soil (FIXED IMAGE: Fill dirt.png)
     { name: "Fill Dirt", category: "Soil", price: "$20.00/ton or $240.00/15 tons", density: 1.2, img: "images/Fill dirt.png" },
-
-    // Salt River Rock
     { name: "River Rock", category: "Salt River Rock", price: "$80/ton", density: 1.2, img: "images/riverrock.jpeg" },
     { name: "4\" - 12\" River Rock", category: "Salt River Rock", price: "$75/ton", density: 1.2, img: "images/4-12riverrock.png" },
-
-    // Rip Rap
     { name: "1\" - 3\" Apache Red Rip Rap", category: "Rip Rap", price: "$65/ton", density: 1.5, img: "images/1-3_Apache_red_rip_rap.png" },
     { name: "4\" - 12\" Coronado Brown Rip Rap", category: "Rip Rap", price: "$70/ton", density: 1.2, img: "images/4-12_Corondado_brown_rip_rap.png" },
     { name: "General Rip Rap", category: "Rip Rap", price: "$70/ton", density: 1.2, img: "images/riprap.jpeg" }
@@ -49,12 +40,63 @@ const materialsList = [
 // --- 3. LOGIC & STATE ---
 let currentFilteredList = [];
 let lightboxIndex = 0;
+let carouselTimeout; // Store timeout to prevent overlaps
 
 window.onload = () => {
     if (document.getElementById('carousel-track')) initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
 };
 
+/** * SMART CAROUSEL LOGIC
+ * Automatically waits for videos to finish before rotating.
+ */
+function initCarousel() {
+    let carIndex = 0; 
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    const rotate = () => {
+        const asset = projectAssets[carIndex];
+        track.style.opacity = 0;
+
+        // Small delay for the fade-out transition
+        setTimeout(() => {
+            track.innerHTML = ''; // Clear container
+
+            if (asset.type === 'video') {
+                const video = document.createElement('video');
+                video.src = asset.src;
+                video.autoplay = true;
+                video.muted = true;
+                video.playsInline = true;
+                video.className = "w-full h-full object-cover";
+                
+                // Smart trigger: Go to next slide when video ends
+                video.onended = () => {
+                    carouselTimeout = setTimeout(rotate, 500);
+                };
+
+                // Fallback: If video fails to load or play, skip after 10s
+                video.onerror = () => {
+                    carouselTimeout = setTimeout(rotate, 2000);
+                };
+                
+                track.appendChild(video);
+            } else {
+                track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
+                // Standard timer for images (5 seconds)
+                carouselTimeout = setTimeout(rotate, 5000);
+            }
+            
+            track.style.opacity = 1;
+            carIndex = (carIndex + 1) % projectAssets.length;
+        }, 800);
+    };
+
+    rotate();
+}
+
+// --- MATERIALS GALLERY LOGIC ---
 function filterMaterials(categoryName) {
     const hub = document.getElementById('category-hub');
     const results = document.getElementById('results-view');
@@ -109,11 +151,13 @@ function changeImage(step) {
 
 function updateLightbox() {
     const item = currentFilteredList[lightboxIndex];
-    document.getElementById('lightbox-img').src = item.img;
+    const img = document.getElementById('lightbox-img');
+    if (img) img.src = item.img;
     document.getElementById('lightbox-name').innerText = item.name;
     document.getElementById('lightbox-price').innerText = item.price;
 }
 
+// --- CALCULATOR LOGIC ---
 function populateCalculator() {
     const select = document.getElementById('mat-select');
     if (!select) return;
@@ -137,7 +181,7 @@ function runMath() {
     const shape = document.getElementById('shape').value;
     const depth = parseFloat(document.getElementById('depth').value) || 0;
     const density = parseFloat(document.getElementById('mat-select').value);
-    const waste = parseFloat(document.getElementById('waste-factor').value);
+    const waste = parseFloat(document.getElementById('waste-factor').value) || 1.0;
     let area = 0;
 
     if (shape === 'rect') {
@@ -148,23 +192,8 @@ function runMath() {
         area = ((parseFloat(document.getElementById('base').value) || 0) * (parseFloat(document.getElementById('height').value) || 0)) / 2;
     }
 
+    // Formula to calculate tons from volume
     const tons = (area * (depth / 12) / 27) * density * waste;
     document.getElementById('result-text').innerText = tons.toFixed(2) + " Tons";
     document.getElementById('calc-result').classList.remove('hidden');
-}
-
-function initCarousel() {
-    let carIndex = Math.floor(Math.random() * projectAssets.length);
-    const rotate = () => {
-        const track = document.getElementById('carousel-track');
-        if (!track) return;
-        track.style.opacity = 0;
-        setTimeout(() => {
-            track.innerHTML = `<img src="${projectAssets[carIndex].src}" class="w-full h-full object-cover">`;
-            track.style.opacity = 1;
-            carIndex = (carIndex + 1) % projectAssets.length;
-        }, 800);
-    };
-    rotate();
-    setInterval(rotate, 5000);
 }
