@@ -1,6 +1,4 @@
 // --- 1. DATA CONFIGURATION: GALLERY ---
-// Verified: GitHub folder is lowercase "images/". 
-// Verified: Local files are vid1.mp4, vid2.mp4, and slide1-7.jpeg.
 const projectAssets = [
     { type: 'video', src: 'images/vid1.mp4', caption: '' },
     { type: 'video', src: 'images/vid2.mp4', caption: '' },
@@ -42,62 +40,12 @@ const materialsList = [
 // --- 3. LOGIC & STATE ---
 let currentFilteredList = [];
 let lightboxIndex = 0;
-let carouselTimeout;
 
 window.onload = () => {
     if (document.getElementById('carousel-track')) initCarousel();
     if (document.getElementById('mat-select')) populateCalculator();
 };
 
-/** * SMART CAROUSEL 
- * Listens for video completion before rotating.
- */
-function initCarousel() {
-    let carIndex = 0; 
-    const track = document.getElementById('carousel-track');
-    if (!track) return;
-
-    const rotate = () => {
-        const asset = projectAssets[carIndex];
-        track.style.opacity = 0;
-
-        setTimeout(() => {
-            track.innerHTML = ''; 
-
-            if (asset.type === 'video') {
-                const video = document.createElement('video');
-                video.src = asset.src;
-                video.autoplay = true;
-                video.muted = true;
-                video.playsInline = true; // Required for mobile
-                video.className = "w-full h-full object-cover";
-                
-                // Rotate when video finishes
-                video.onended = () => {
-                    carouselTimeout = setTimeout(rotate, 500);
-                };
-
-                // Skip if file not found
-                video.onerror = () => {
-                    console.error("Failed to load video:", asset.src);
-                    carouselTimeout = setTimeout(rotate, 1000);
-                };
-                
-                track.appendChild(video);
-            } else {
-                track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
-                carouselTimeout = setTimeout(rotate, 5000); // 5s for images
-            }
-            
-            track.style.opacity = 1;
-            carIndex = (carIndex + 1) % projectAssets.length;
-        }, 800);
-    };
-
-    rotate();
-}
-
-// --- MATERIALS GALLERY ---
 function filterMaterials(categoryName) {
     const hub = document.getElementById('category-hub');
     const results = document.getElementById('results-view');
@@ -158,7 +106,6 @@ function updateLightbox() {
     document.getElementById('lightbox-price').innerText = item.price;
 }
 
-// --- CALCULATOR ---
 function populateCalculator() {
     const select = document.getElementById('mat-select');
     if (!select) return;
@@ -182,7 +129,7 @@ function runMath() {
     const shape = document.getElementById('shape').value;
     const depth = parseFloat(document.getElementById('depth').value) || 0;
     const density = parseFloat(document.getElementById('mat-select').value);
-    const waste = parseFloat(document.getElementById('waste-factor').value) || 1.0;
+    const waste = parseFloat(document.getElementById('waste-factor').value) || 1;
     let area = 0;
 
     if (shape === 'rect') {
@@ -196,4 +143,29 @@ function runMath() {
     const tons = (area * (depth / 12) / 27) * density * waste;
     document.getElementById('result-text').innerText = tons.toFixed(2) + " Tons";
     document.getElementById('calc-result').classList.remove('hidden');
+}
+
+function initCarousel() {
+    let carIndex = 0;
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    const rotate = () => {
+        const asset = projectAssets[carIndex];
+        track.style.opacity = 0;
+        
+        setTimeout(() => {
+            if (asset.type === 'video') {
+                track.innerHTML = `<video src="${asset.src}" autoplay muted loop playsinline class="w-full h-full object-cover"></video>`;
+            } else {
+                track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
+            }
+            track.style.opacity = 1;
+            carIndex = (carIndex + 1) % projectAssets.length;
+        }, 800);
+    };
+
+    rotate();
+    // I increased this to 10 seconds (10000ms) to give your videos time to play
+    setInterval(rotate, 10000); 
 }
