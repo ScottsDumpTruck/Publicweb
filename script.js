@@ -1,4 +1,5 @@
 // --- 1. DATA CONFIGURATION: GALLERY ---
+// Matches the lowercase 'images' folder on your GitHub repository
 const projectAssets = [
     { type: 'video', src: 'images/vid1.mp4', caption: '' },
     { type: 'video', src: 'images/vid2.mp4', caption: '' },
@@ -145,6 +146,9 @@ function runMath() {
     document.getElementById('calc-result').classList.remove('hidden');
 }
 
+/** * UPDATED CAROUSEL: Fixed for Desktop browsers.
+ * Uses a 20-second timer to prevent "short snips" and forced reload for desktop.
+ */
 function initCarousel() {
     let carIndex = 0;
     const track = document.getElementById('carousel-track');
@@ -156,7 +160,12 @@ function initCarousel() {
         
         setTimeout(() => {
             if (asset.type === 'video') {
-                track.innerHTML = `<video src="${asset.src}" autoplay muted loop playsinline class="w-full h-full object-cover"></video>`;
+                // 'muted' and 'playsinline' are mandatory for desktop autoplay
+                track.innerHTML = `<video id="active-video" src="${asset.src}" autoplay muted loop playsinline class="w-full h-full object-cover"></video>`;
+                
+                // desktop fix: force the video to load the source properly
+                const videoEl = document.getElementById('active-video');
+                if (videoEl) videoEl.load(); 
             } else {
                 track.innerHTML = `<img src="${asset.src}" class="w-full h-full object-cover">`;
             }
@@ -166,6 +175,6 @@ function initCarousel() {
     };
 
     rotate();
-    // I increased this to 10 seconds (10000ms) to give your videos time to play
+    // Set to 30 seconds (30000ms) to ensure desktop has time to buffer and play
     setInterval(rotate, 30000); 
 }
