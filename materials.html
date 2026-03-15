@@ -3,103 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materials | Scott Dump Truck & Tractor Service</title>
+    <title>Materials & Pricing | Scott Dump Truck & Tractor Service | Tucson, AZ</title>
+    <meta name="description" content="Browse our full selection of aggregates, decorative rock, sand, soil, salt river rock, and rip rap. Per-ton pricing listed. Serving Tucson, AZ. Free delivery on 10+ tons.">
+    <meta name="keywords" content="aggregate Tucson, decorative rock Tucson, ABC aggregate price, Apache red rock, Coronado brown, desert brown gravel, mortar sand, fill dirt Tucson">
+    <link rel="canonical" href="https://scottdumptruck.com/materials.html">
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#F5F5DC] text-gray-900 overflow-x-hidden">
 
-    <header class="bg-[#5D4037] py-6 md:py-10 border-b-8 border-[#D2B48C] text-center relative">
-        <div class="px-4 mb-6 lg:mb-0 lg:absolute lg:right-[10%] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-            <p class="text-[#D2B48C] font-black text-lg md:text-2xl uppercase tracking-tighter">4869 N. Davis Avenue</p>
-            <p class="text-white font-bold uppercase tracking-widest text-xs md:text-sm">Tucson, AZ</p>
-            <p class="text-[#5D4037] font-black uppercase tracking-widest text-[10px] md:text-xs mt-2 bg-[#D2B48C] px-4 py-1.5 rounded-full inline-block shadow-lg">
-                Open to the Public
-            </p>
+    <!-- ===== STICKY HEADER ===== -->
+    <header id="site-header" class="sticky top-0 z-40 bg-[#5D4037] border-b-4 border-[#D2B48C] transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" alt="Scott Dump Truck & Tractor Service Logo" class="h-10 md:h-14 logo-shadow">
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="materials.html" class="nav-link active" aria-current="page">Materials</a>
+                <a href="calculator.html" class="nav-link">Calculator</a>
+                <a href="index.html#quote" class="cta-pill">Get a Quote</a>
+            </nav>
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Open menu">
+                <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+                <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+                <span class="block w-4 h-0.5 bg-white"></span>
+            </button>
         </div>
-        <a href="index.html">
-            <img src="logo.png" alt="Logo" class="h-32 md:h-52 mx-auto logo-shadow mb-6 transition transform hover:scale-105">
-        </a>
-        <nav>
-            <ul class="flex justify-center gap-6 text-white font-bold uppercase tracking-widest text-[10px] md:text-xs">
-                <li><a href="index.html" class="hover:text-[#D2B48C]">Home</a></li>
-                <li><a href="materials.html" class="text-[#D2B48C]">Materials</a></li>
-                <li><a href="calculator.html" class="hover:text-[#D2B48C]">Calculator</a></li>
-            </ul>
-        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#4E342E] px-4 pb-4 border-t border-[#D2B48C]/30">
+            <a href="index.html" class="block py-3 text-white font-bold uppercase text-xs tracking-widest border-b border-white/10 hover:text-[#D2B48C]">Home</a>
+            <a href="materials.html" class="block py-3 text-[#D2B48C] font-bold uppercase text-xs tracking-widest border-b border-white/10">Materials</a>
+            <a href="calculator.html" class="block py-3 text-white font-bold uppercase text-xs tracking-widest border-b border-white/10 hover:text-[#D2B48C]">Calculator</a>
+            <a href="index.html#quote" class="block mt-4 bg-[#D2B48C] text-[#5D4037] py-3 px-6 rounded-full font-black uppercase text-xs tracking-widest text-center">Get a Quote</a>
+        </div>
     </header>
 
+    <!-- ===== PAGE HERO ===== -->
+    <section class="bg-[#5D4037] py-16 px-4 text-white border-b-8 border-[#D2B48C]">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-[#D2B48C] font-bold uppercase text-xs tracking-[0.3em] mb-3">In Stock Now</p>
+            <h1 class="hero-title text-5xl md:text-6xl font-black uppercase mb-4">Materials &amp; Pricing</h1>
+            <p class="text-gray-300 font-light max-w-xl mx-auto">Browse our full inventory. Click any category to explore products and pricing. Prices shown exclude delivery and tax.</p>
+        </div>
+    </section>
+
     <main class="max-w-6xl mx-auto py-12 px-4 min-h-[60vh]">
-        <section class="mb-12 bg-white border-l-8 border-[#D2B48C] p-6 shadow-md rounded-r-xl">
-            <div class="flex items-start gap-4">
-                <div class="bg-[#5D4037] text-white p-2 rounded-full hidden md:block">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="text-[#5D4037] font-black uppercase text-sm tracking-widest mb-1">Pricing & Delivery Notice</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Prices shown do not include delivery or applicable taxes. 
-                        <span class="text-[#5D4037] font-bold underline decoration-[#D2B48C]">Complimentary delivery is available for orders of 10 tons or more.</span> 
-                        For orders under 10 tons, delivery fees vary by distance.
-                    </p>
-                </div>
+
+        <!-- Notice Banner -->
+        <section class="mb-10 bg-white border-l-8 border-[#D2B48C] p-5 shadow-md rounded-r-xl flex items-start gap-4">
+            <div class="bg-[#5D4037] text-white p-2 rounded-full hidden md:flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <div>
+                <h4 class="text-[#5D4037] font-black uppercase text-xs tracking-widest mb-1">Pricing &amp; Delivery Notice</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Prices shown do not include delivery or applicable taxes.
+                    <span class="text-[#5D4037] font-bold">Complimentary delivery is available for orders of 10 tons or more.</span>
+                    For orders under 10 tons, delivery fees vary by distance. Use our
+                    <a href="calculator.html" class="underline decoration-[#D2B48C] hover:text-[#D2B48C] transition">tonnage calculator</a> to estimate your needs.
+                </p>
             </div>
         </section>
 
-        <div id="category-hub" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div onclick="filterMaterials('Construction Aggregate')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/ABC.png" alt="Construction" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Construction Aggregate</h3></div>
-            </div>
-            <div onclick="filterMaterials('Decorative Aggregate')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/3-8_Coronado_Brown.png" alt="Decorative" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Decorative Aggregate</h3></div>
-            </div>
-            <div onclick="filterMaterials('Sand')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/Mortarsand.png" alt="Sand" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Sand</h3></div>
-            </div>
-            <div onclick="filterMaterials('Soil')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/Fill dirt.png" alt="Soil" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Soil</h3></div>
-            </div>
-            <div onclick="filterMaterials('Salt River Rock')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/riverrock.jpeg" alt="River Rock" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Salt River Rock</h3></div>
-            </div>
-            <div onclick="filterMaterials('Rip Rap')" class="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl bg-gray-800">
-                <img src="images/riprap.jpeg" alt="Rip Rap" class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-tighter text-center px-4">Rip Rap</h3></div>
+        <!-- ===== CATEGORY HUB ===== -->
+        <div id="category-hub">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <button onclick="filterMaterials('Construction Aggregate')"
+                    class="category-card relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-xl bg-gray-900 text-left border-b-4 border-[#D2B48C]">
+                    <img src="images/ABC.png" alt="Construction Aggregate" loading="lazy"
+                        class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110 group-hover:opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Construction Aggregate</h3>
+                        <p class="text-[#D2B48C] text-xs font-bold uppercase tracking-widest">ABC, Spec/Non-Spec →</p>
+                    </div>
+                </button>
+
+                <button onclick="filterMaterials('Decorative Aggregate')"
+                    class="category-card relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-xl bg-gray-900 text-left border-b-4 border-[#D2B48C]">
+                    <img src="images/3-8_Coronado_Brown.png" alt="Decorative Aggregate" loading="lazy"
+                        class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110 group-hover:opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Decorative Aggregate</h3>
+                        <p class="text-[#D2B48C] text-xs font-bold uppercase tracking-widest">Apache Red, Coronado Brown, Boulders →</p>
+                    </div>
+                </button>
+
+                <button onclick="filterMaterials('Sand')"
+                    class="category-card relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-xl bg-gray-900 text-left border-b-4 border-[#D2B48C]">
+                    <img src="images/Mortarsand.png" alt="Sand" loading="lazy"
+                        class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110 group-hover:opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Sand</h3>
+                        <p class="text-[#D2B48C] text-xs font-bold uppercase tracking-widest">Mortar Sand, Concrete Sand →</p>
+                    </div>
+                </button>
+
+                <button onclick="filterMaterials('Soil')"
+                    class="category-card relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-xl bg-gray-900 text-left border-b-4 border-[#D2B48C]">
+                    <img src="images/Fill dirt.png" alt="Soil" loading="lazy"
+                        class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110 group-hover:opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Soil</h3>
+                        <p class="text-[#D2B48C] text-xs font-bold uppercase tracking-widest">Fill Dirt →</p>
+                    </div>
+                </button>
+
+                <button onclick="filterMaterials('Salt River Rock')"
+                    class="category-card relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-xl bg-gray-900 text-left border-b-4 border-[#D2B48C]">
+                    <img src="images/riverrock.jpeg" alt="Salt River Rock" loading="lazy"
+                        class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110 group-hover:opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Salt River Rock</h3>
+                        <p class="text-[#D2B48C] text-xs font-bold uppercase tracking-widest">River Rock, 4"–12" →</p>
+                    </div>
+                </button>
+
+                <button onclick="filterMaterials('Rip Rap')"
+                    class="category-card relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-xl bg-gray-900 text-left border-b-4 border-[#D2B48C]">
+                    <img src="images/riprap.jpeg" alt="Rip Rap" loading="lazy"
+                        class="w-full h-full object-cover opacity-50 transition duration-500 group-hover:scale-110 group-hover:opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Rip Rap</h3>
+                        <p class="text-[#D2B48C] text-xs font-bold uppercase tracking-widest">Apache Red, Coronado Brown →</p>
+                    </div>
+                </button>
             </div>
         </div>
 
+        <!-- ===== RESULTS VIEW ===== -->
         <div id="results-view" class="hidden">
             <div class="flex items-center justify-between mb-8 border-b-4 border-[#D2B48C] pb-4">
-                <h2 id="category-title" class="text-3xl font-black text-[#5D4037] uppercase italic">Category</h2>
-                <button onclick="showHub()" class="bg-[#5D4037] text-white px-6 py-2 rounded-full font-bold uppercase text-xs hover:bg-[#D2B48C] transition shadow-lg">← Back</button>
+                <div>
+                    <p class="text-[#D2B48C] font-bold uppercase text-xs tracking-widest mb-1">Category</p>
+                    <h2 id="category-title" class="text-3xl md:text-4xl font-black text-[#5D4037] uppercase italic"></h2>
+                </div>
+                <button onclick="showHub()" class="bg-[#5D4037] text-white px-6 py-3 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-[#D2B48C] hover:text-[#5D4037] transition shadow-lg flex items-center gap-2">
+                    <span>←</span> All Categories
+                </button>
             </div>
-            <div id="materials-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+            <div id="materials-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+            <!-- CTA under results -->
+            <div class="mt-12 bg-[#5D4037] rounded-2xl p-8 text-center text-white">
+                <h3 class="font-black uppercase text-2xl mb-2">Need help choosing?</h3>
+                <p class="text-gray-300 text-sm mb-6">Use our calculator to estimate tonnage, or contact us directly for expert advice.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="calculator.html" class="bg-[#D2B48C] text-[#5D4037] px-8 py-3 rounded-full font-black uppercase text-xs tracking-widest hover:bg-white transition">
+                        Open Calculator
+                    </a>
+                    <a href="index.html#quote" class="border-2 border-white/30 text-white px-8 py-3 rounded-full font-bold uppercase text-xs tracking-widest hover:border-[#D2B48C] hover:text-[#D2B48C] transition">
+                        Request a Quote
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
 
-    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex flex-col items-center justify-center p-4">
-        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-5xl font-light hover:text-[#D2B48C] transition">&times;</button>
-        <button onclick="changeImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-6xl hover:text-[#D2B48C] select-none">‹</button>
-        <button onclick="changeImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-6xl hover:text-[#D2B48C] select-none">›</button>
-        <img id="lightbox-img" src="" class="max-w-full max-h-[70vh] rounded-lg shadow-2xl object-contain">
-        <div class="mt-8 text-center text-white">
+    <!-- ===== LIGHTBOX ===== -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-name"
+        class="fixed inset-0 bg-black/95 z-50 hidden flex flex-col items-center justify-center p-4">
+        <button onclick="closeLightbox()" aria-label="Close" class="absolute top-6 right-6 text-white text-5xl font-light hover:text-[#D2B48C] transition leading-none">&times;</button>
+        <button onclick="changeImage(-1)" aria-label="Previous" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-6xl hover:text-[#D2B48C] select-none transition">&#8249;</button>
+        <button onclick="changeImage(1)" aria-label="Next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-6xl hover:text-[#D2B48C] select-none transition">&#8250;</button>
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[65vh] rounded-xl shadow-2xl object-contain">
+        <div class="mt-6 text-center text-white">
             <h3 id="lightbox-name" class="text-2xl font-black uppercase tracking-tighter"></h3>
             <p id="lightbox-price" class="text-[#D2B48C] text-xl font-bold mt-2"></p>
+            <a href="index.html#quote" class="inline-block mt-4 bg-[#D2B48C] text-[#5D4037] px-8 py-3 rounded-full font-black uppercase text-xs tracking-widest hover:bg-white transition">
+                Quote This Material
+            </a>
         </div>
     </div>
 
-    <footer class="bg-[#5D4037] py-12 text-center text-[10px] text-gray-400 uppercase tracking-[0.3em] px-4">
-        <p>© 2026 Scott Dump Truck & Tractor Service</p>
-        <p class="mt-4 text-white">Infrastructure by <a href="#" class="font-bold underline hover:text-[#D2B48C]">Theory Solutions</a></p>
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[#4E342E] py-12 text-center text-[10px] text-gray-400 uppercase tracking-[0.3em] px-4 border-t-8 border-[#D2B48C]">
+        <p>© 2026 Scott Dump Truck &amp; Tractor Service · 4869 N. Davis Avenue, Tucson, AZ</p>
+        <p class="mt-4 text-white/50">Website by <a href="#" class="font-bold underline hover:text-[#D2B48C] transition">Theory Solutions</a></p>
     </footer>
 
+    <!-- Chatbot -->
+    <div id="chat-widget" class="fixed bottom-6 right-6 z-50">
+        <button id="chat-toggle" onclick="toggleChat()" aria-label="Open chat assistant"
+            class="w-16 h-16 bg-[#5D4037] text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-[#D2B48C] hover:text-[#5D4037] transition-all duration-300 border-4 border-[#D2B48C]">
+            <span id="chat-icon-open" class="text-2xl">💬</span>
+            <span id="chat-icon-close" class="text-2xl hidden">✕</span>
+        </button>
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-2xl shadow-2xl border-2 border-[#D2B48C] overflow-hidden" style="max-height: 500px; display: none; flex-direction: column;">
+            <div class="bg-[#5D4037] px-5 py-4 flex items-center gap-3">
+                <div class="w-8 h-8 bg-[#D2B48C] rounded-full flex items-center justify-center text-sm font-black text-[#5D4037]">S</div>
+                <div>
+                    <p class="text-white font-black text-sm uppercase tracking-tighter">Scott's Assistant</p>
+                    <p class="text-[#D2B48C] text-[10px] uppercase tracking-widest">Ask me anything!</p>
+                </div>
+            </div>
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 bg-[#F5F5DC]/40" style="max-height: 300px;">
+                <div class="bot-bubble">Hi there! 👋 Ask me about our materials, pricing, or delivery!</div>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <button class="quick-reply" onclick="handleQuickReply('Where are you located?')">📍 Location</button>
+                    <button class="quick-reply" onclick="handleQuickReply('Free delivery?')">🚛 Delivery</button>
+                    <button class="quick-reply" onclick="handleQuickReply('What materials do you carry?')">🪨 Materials</button>
+                </div>
+            </div>
+            <div class="p-3 border-t border-gray-100 flex gap-2 bg-white">
+                <input id="chat-input" type="text" placeholder="Type a question..."
+                    class="flex-1 border-2 border-gray-100 rounded-xl px-4 py-2 text-sm outline-none focus:border-[#D2B48C] transition"
+                    onkeypress="if(event.key==='Enter') sendChat()">
+                <button onclick="sendChat()" class="bg-[#5D4037] text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-[#D2B48C] hover:text-[#5D4037] transition">Send</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

@@ -1,25 +1,357 @@
+/* ============================================
+   SCOTT DUMP TRUCK & TRACTOR SERVICE
+   style.css — Revamped 2026
+   ============================================ */
+
 :root {
     --coronado-tan: #D2B48C;
     --earth-brown: #5D4037;
+    --deep-brown: #4E342E;
     --desert-sand: #F5F5DC;
+    --white: #ffffff;
+    --gray-soft: #f8f7f4;
 }
+
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
     background-color: var(--desert-sand);
     scroll-behavior: smooth;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Logo Pop Effect */
+/* ===== TYPOGRAPHY ===== */
+.hero-title,
+.section-title,
+h1, h2, h3, h4 {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* ===== LOGO ===== */
 .logo-shadow {
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+    transition: filter 0.3s ease;
+}
+.logo-shadow:hover {
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
 }
 
-/* Custom transitions for the rotating gallery */
+/* ===== NAVIGATION ===== */
+.nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 0.4rem 0;
+    position: relative;
+    transition: color 0.2s;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--coronado-tan);
+    transition: width 0.3s ease;
+}
+.nav-link:hover,
+.nav-link.active {
+    color: var(--coronado-tan);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.cta-pill {
+    background: var(--coronado-tan);
+    color: var(--earth-brown);
+    padding: 0.5rem 1.4rem;
+    border-radius: 9999px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 15px rgba(210, 180, 140, 0.4);
+}
+.cta-pill:hover {
+    background: var(--white);
+    transform: translateY(-1px);
+}
+
+/* ===== HERO TEXTURE ===== */
+.hero-section {
+    background-color: var(--earth-brown);
+}
+.hero-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D2B48C' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ===== STAT CARDS ===== */
+.stat-card {
+    animation: fadeInUp 0.6s ease both;
+}
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ===== CAROUSEL ===== */
 #carousel-track {
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 0.6s ease-in-out;
 }
 
-/* Material Tile Hover */
+.carousel-btn {
+    background: rgba(0,0,0,0.4);
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s, background 0.2s;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.group:hover .carousel-btn {
+    opacity: 1;
+}
+.carousel-btn:hover {
+    background: var(--coronado-tan);
+    color: var(--earth-brown);
+}
+
+/* Carousel dot styles */
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: background 0.2s, width 0.3s;
+}
+.carousel-dot.active {
+    background: var(--coronado-tan);
+    width: 24px;
+}
+
+/* ===== SERVICE CARDS ===== */
+.service-card {
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+    transform: translateY(-4px);
+}
+
+/* ===== MATERIAL PREVIEW CARDS ===== */
+.material-preview-card {
+    transform: translateY(0);
+    transition: all 0.2s ease;
+}
+.material-preview-card:hover {
+    transform: translateY(-3px);
+}
+
+/* ===== CATEGORY CARDS ===== */
+.category-card {
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+.category-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+/* ===== MATERIAL TILES ===== */
+.material-tile {
+    transform: translateY(0);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.material-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(93, 64, 55, 0.15);
+}
+.material-tile img {
+    transition: transform 0.4s ease;
+}
 .material-tile:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
+}
+
+/* ===== FORMS ===== */
+.form-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+}
+.form-input {
+    width: 100%;
+    border: 2px solid #f3f4f6;
+    padding: 0.85rem 1rem;
+    border-radius: 0.75rem;
+    outline: none;
+    background: #fafafa;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #1f2937;
+    transition: border-color 0.2s, background 0.2s;
+}
+.form-input:focus {
+    border-color: var(--coronado-tan);
+    background: var(--white);
+}
+.form-group { display: flex; flex-direction: column; }
+
+/* ===== SHAPE SELECTOR ===== */
+.shape-btn {
+    border-color: #e5e7eb;
+    color: var(--earth-brown);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+}
+.shape-btn:hover {
+    border-color: var(--coronado-tan);
+    background: var(--desert-sand);
+}
+.shape-btn.active-shape {
+    border-color: var(--earth-brown);
+    background: var(--earth-brown);
+    color: white;
+}
+.shape-btn.active-shape span {
+    color: var(--coronado-tan);
+}
+
+/* ===== LIGHTBOX ===== */
+#lightbox {
+    animation: fadeIn 0.2s ease;
+}
+
+/* ===== CHATBOT ===== */
+#chat-window {
+    animation: slideUpFade 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.bot-bubble {
+    background: var(--earth-brown);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem 1rem 1rem 0.25rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    font-family: 'DM Sans', sans-serif;
+    max-width: 90%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.user-bubble {
+    background: var(--coronado-tan);
+    color: var(--earth-brown);
+    padding: 0.75rem 1rem;
+    border-radius: 1rem 1rem 0.25rem 1rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    font-family: 'DM Sans', sans-serif;
+    max-width: 90%;
+    margin-left: auto;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.quick-reply {
+    background: white;
+    border: 1.5px solid var(--coronado-tan);
+    color: var(--earth-brown);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+}
+.quick-reply:hover {
+    background: var(--coronado-tan);
+}
+
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 0.75rem 1rem;
+    background: var(--earth-brown);
+    border-radius: 1rem 1rem 1rem 0.25rem;
+    width: fit-content;
+}
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--coronado-tan);
+    border-radius: 50%;
+    animation: typingBounce 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== UTILITIES ===== */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.8rem; }
+    .stat-card { padding: 1rem; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+    #chat-widget, header nav .cta-pill { display: none; }
 }

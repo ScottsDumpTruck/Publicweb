@@ -3,121 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scott Dump Truck & Tractor Service | Tucson, AZ</title>
+    <title>Scott Dump Truck & Tractor Service | Rock & Aggregate Delivery | Tucson, AZ</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Tucson's trusted dump truck and tractor service. Quality aggregate, rock, sand, and soil delivery. Family-owned since day one. Free delivery on 10+ tons. Located at 4869 N. Davis Ave, Tucson AZ.">
+    <meta name="keywords" content="dump truck Tucson, aggregate delivery Tucson, rock delivery Tucson AZ, gravel Tucson, ABC aggregate, tractor service Tucson, landscape rock Tucson, fill dirt Tucson, river rock Tucson">
+    <meta name="author" content="Scott Dump Truck & Tractor Service">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://scottdumptruck.com/">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://scottdumptruck.com/">
+    <meta property="og:title" content="Scott Dump Truck & Tractor Service | Tucson, AZ">
+    <meta property="og:description" content="Tucson's choice for rock, aggregate, sand & soil delivery. Family-owned. Free delivery on 10+ tons.">
+    <meta property="og:image" content="https://scottdumptruck.com/logo.png">
+
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Scott Dump Truck & Tractor Service",
+      "image": "https://scottdumptruck.com/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4869 N. Davis Avenue",
+        "addressLocality": "Tucson",
+        "addressRegion": "AZ",
+        "postalCode": "85705",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 32.2826,
+        "longitude": -110.9747
+      },
+      "url": "https://scottdumptruck.com",
+      "telephone": "+1-520-403-5123",
+      "priceRange": "$$",
+      "openingHours": "Mo-Sa 07:00-17:00",
+      "description": "Family-owned dump truck and tractor service in Tucson, AZ. Delivering quality aggregate, rock, sand, and soil for residential and commercial projects."
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#F5F5DC] text-gray-900 overflow-x-hidden">
 
-    <header class="bg-[#5D4037] py-6 md:py-10 border-b-8 border-[#D2B48C] text-center relative">
-        <div class="px-4 mb-6 lg:mb-0 lg:absolute lg:right-[10%] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-            <p class="text-[#D2B48C] font-black text-lg md:text-2xl uppercase tracking-tighter">4869 N. Davis Avenue</p>
-            <p class="text-white font-bold uppercase tracking-widest text-xs md:text-sm">Tucson, AZ</p>
-            <p class="text-[#5D4037] font-black uppercase tracking-widest text-[10px] md:text-xs mt-2 bg-[#D2B48C] px-4 py-1.5 rounded-full inline-block shadow-lg">
-                Open to the Public
-            </p>
+    <!-- ===== STICKY HEADER ===== -->
+    <header id="site-header" class="sticky top-0 z-40 bg-[#5D4037] border-b-4 border-[#D2B48C] transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" alt="Scott Dump Truck & Tractor Service Logo" class="h-10 md:h-14 logo-shadow">
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+                <a href="materials.html" class="nav-link">Materials</a>
+                <a href="calculator.html" class="nav-link">Calculator</a>
+                <a href="#quote" class="cta-pill">Get a Quote</a>
+            </nav>
+
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Open menu">
+                <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+                <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+                <span class="block w-4 h-0.5 bg-white"></span>
+            </button>
         </div>
 
-        <a href="index.html">
-            <img src="logo.png" alt="Scott Dump Truck Logo" class="h-32 md:h-52 mx-auto logo-shadow mb-6 transition transform hover:scale-105">
-        </a>
-        
-        <nav>
-            <ul class="flex justify-center gap-6 md:gap-8 text-white font-bold uppercase tracking-widest text-[10px] md:text-xs">
-                <li><a href="index.html" class="text-[#D2B48C]">Home</a></li>
-                <li><a href="materials.html" class="hover:text-[#D2B48C] transition">Materials</a></li>
-                <li><a href="calculator.html" class="hover:text-[#D2B48C] transition">Calculator</a></li>
-            </ul>
-        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#4E342E] px-4 pb-4 border-t border-[#D2B48C]/30">
+            <a href="index.html" class="block py-3 text-[#D2B48C] font-bold uppercase text-xs tracking-widest border-b border-white/10">Home</a>
+            <a href="materials.html" class="block py-3 text-white font-bold uppercase text-xs tracking-widest border-b border-white/10 hover:text-[#D2B48C]">Materials</a>
+            <a href="calculator.html" class="block py-3 text-white font-bold uppercase text-xs tracking-widest border-b border-white/10 hover:text-[#D2B48C]">Calculator</a>
+            <a href="#quote" class="block mt-4 bg-[#D2B48C] text-[#5D4037] py-3 px-6 rounded-full font-black uppercase text-xs tracking-widest text-center">Get a Quote</a>
+        </div>
     </header>
 
-    <section class="relative py-20 bg-[#5D4037] text-white text-center">
-        <div class="max-w-4xl mx-auto px-4">
-            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter italic mb-4">
-                Tucson's Choice for <span class="text-[#D2B48C]">Rock & Grading</span>
-            </h1>
-            <p class="text-lg md:text-xl font-bold uppercase tracking-widest text-gray-300 mb-8">
-                Family Owned & Operated • Professional Delivery • Quality Aggregate
+    <!-- ===== HERO ===== -->
+    <section class="hero-section relative bg-[#5D4037] text-white overflow-hidden" style="min-height: 85vh;">
+        <div class="hero-texture absolute inset-0 opacity-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#5D4037]/80"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 py-24 md:py-32 flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1 text-center md:text-left">
+                <p class="inline-block bg-[#D2B48C]/20 text-[#D2B48C] text-[10px] font-bold uppercase tracking-[0.3em] px-4 py-2 rounded-full mb-6 border border-[#D2B48C]/30">
+                    Family Owned &amp; Operated · Tucson, AZ
+                </p>
+                <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-none mb-6">
+                    Tucson's Source for<br><span class="text-[#D2B48C]">Rock &amp;</span><br>Aggregate
+                </h1>
+                <p class="text-gray-300 text-lg md:text-xl max-w-lg mb-10 leading-relaxed font-light">
+                    Professional delivery of aggregate, gravel, sand, soil &amp; more. Serving homeowners and contractors across the Tucson valley.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#quote" class="bg-[#D2B48C] text-[#5D4037] px-8 py-4 rounded-full font-black uppercase tracking-widest hover:bg-white transition shadow-2xl text-sm">
+                        Get a Free Quote
+                    </a>
+                    <a href="materials.html" class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:border-[#D2B48C] hover:text-[#D2B48C] transition text-sm">
+                        View Materials →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 gap-4 flex-shrink-0">
+                <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
+                    <div class="text-4xl font-black text-[#D2B48C]">20+</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-300 mt-1 font-bold">Materials</div>
+                </div>
+                <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
+                    <div class="text-4xl font-black text-[#D2B48C]">10 Tons</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-300 mt-1 font-bold">Free Delivery</div>
+                </div>
+                <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
+                    <div class="text-4xl font-black text-[#D2B48C]">Family</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-300 mt-1 font-bold">Owned</div>
+                </div>
+                <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
+                    <div class="text-4xl font-black text-[#D2B48C]">Open</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-300 mt-1 font-bold">to the Public</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address Badge -->
+        <div class="relative z-10 bg-[#D2B48C] text-[#5D4037] py-3 px-4 text-center">
+            <p class="font-black uppercase tracking-widest text-xs md:text-sm">
+                📍 Visit Us: 4869 N. Davis Avenue, Tucson, AZ &nbsp;|&nbsp;
+                <a href="tel:+15204035123" class="underline hover:text-[#4E342E] transition">Call (520)-403-5123</a>
             </p>
-            <a href="#quote" class="bg-[#D2B48C] text-[#5D4037] px-10 py-4 rounded-full font-black uppercase tracking-widest hover:bg-white transition shadow-xl inline-block">
-                Get a Fast Quote
-            </a>
         </div>
     </section>
 
     <main>
-        <section class="py-16 px-4 bg-white">
-            <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-3xl font-black text-[#5D4037] uppercase mb-8 italic">Our Recent Work</h2>
-                
-                <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-black group">
-                    <div id="carousel-track" class="w-full h-full flex items-center justify-center transition-opacity duration-1000">
+        <!-- ===== RECENT WORK CAROUSEL ===== -->
+        <section class="py-20 px-4 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <p class="text-[#D2B48C] font-bold uppercase text-xs tracking-[0.3em] mb-3">Portfolio</p>
+                    <h2 class="section-title text-4xl md:text-5xl font-black text-[#5D4037] uppercase">Our Recent Work</h2>
+                </div>
+
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-[#F5F5DC] bg-black group">
+                    <div id="carousel-track" class="w-full h-full flex items-center justify-center">
                         <video id="active-vid" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover hidden"></video>
-                        <img id="active-img" src="" class="w-full h-full object-cover hidden">
-                        
+                        <img id="active-img" src="" alt="Project photo" class="w-full h-full object-cover hidden">
                         <div id="play-overlay" class="absolute inset-0 flex items-center justify-center bg-black/40 hidden z-20 cursor-pointer">
-                            <div class="bg-white/90 p-4 rounded-full text-black font-bold shadow-lg italic tracking-tighter">▶ CLICK TO VIEW DEMO</div>
+                            <div class="bg-white/90 p-4 rounded-full text-black font-bold shadow-lg italic tracking-tighter">▶ CLICK TO VIEW</div>
                         </div>
                     </div>
 
-                    <button onclick="moveCarousel(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-[#D2B48C] text-white hover:text-[#5D4037] w-12 h-12 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-30 font-bold shadow-lg">
-                        &#10094;
-                    </button>
-                    <button onclick="moveCarousel(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-[#D2B48C] text-white hover:text-[#5D4037] w-12 h-12 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-30 font-bold shadow-lg">
-                        &#10095;
-                    </button>
+                    <button onclick="moveCarousel(-1)" aria-label="Previous" class="carousel-btn absolute left-4 top-1/2 -translate-y-1/2 z-30">&#10094;</button>
+                    <button onclick="moveCarousel(1)" aria-label="Next" class="carousel-btn absolute right-4 top-1/2 -translate-y-1/2 z-30">&#10095;</button>
 
-                    <div id="carousel-caption" class="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-4 text-xs font-bold uppercase tracking-widest text-center z-20 hidden"></div>
+                    <!-- Progress Dots -->
+                    <div id="carousel-dots" class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20"></div>
+                    <div id="carousel-caption" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-6 text-xs font-bold uppercase tracking-widest z-20 hidden"></div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 px-4 bg-[#F5F5DC]">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#D2B48C]">
-                    <h3 class="text-[#5D4037] font-black uppercase mb-4 tracking-tighter italic">Material Delivery</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">From ABC to Salt River Rock, we deliver the highest quality aggregates directly to your job site or home.</p>
+        <!-- ===== SERVICES ===== -->
+        <section class="py-20 px-4 bg-[#F5F5DC]">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-14">
+                    <p class="text-[#D2B48C] font-bold uppercase text-xs tracking-[0.3em] mb-3">What We Do</p>
+                    <h2 class="section-title text-4xl md:text-5xl font-black text-[#5D4037] uppercase">Our Services</h2>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#D2B48C]">
-                    <h3 class="text-[#5D4037] font-black uppercase mb-4 tracking-tighter italic">Tractor Service</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Expert grading and tractor work for driveways, house pads, and landscape preparation across Tucson.</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#D2B48C]">
-                    <h3 class="text-[#5D4037] font-black uppercase mb-4 tracking-tighter italic">Open to Public</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Visit our yard at 4869 N. Davis Avenue. We welcome homeowners and contractors alike for all project sizes.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <a href="materials.html" class="service-card group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-b-4 border-[#D2B48C]">
+                        <div class="h-48 bg-[#5D4037] flex items-center justify-center overflow-hidden relative">
+                            <img src="images/ABC.png" alt="Aggregate delivery" class="w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-500 group-hover:opacity-60">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-5xl">🪨</span>
+                            </div>
+                        </div>
+                        <div class="p-7">
+                            <h3 class="text-[#5D4037] font-black uppercase mb-3 tracking-tighter text-xl">Material Delivery</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">ABC to Salt River Rock — we deliver the highest quality aggregates directly to your job site or home. Free delivery on 10+ tons.</p>
+                            <span class="inline-block mt-4 text-[#D2B48C] font-bold text-xs uppercase tracking-widest group-hover:translate-x-1 transition-transform">Browse Materials →</span>
+                        </div>
+                    </a>
+
+                    <div class="service-card group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-b-4 border-[#D2B48C]">
+                        <div class="h-48 bg-[#5D4037] flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[url('images/slide1.jpeg')] bg-cover bg-center opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-500"></div>
+                            <span class="relative z-10 text-5xl">🚜</span>
+                        </div>
+                        <div class="p-7">
+                            <h3 class="text-[#5D4037] font-black uppercase mb-3 tracking-tighter text-xl">Tractor Service</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Expert grading and tractor work for driveways, house pads, and landscape preparation across the Tucson metro area.</p>
+                            <span class="inline-block mt-4 text-[#D2B48C] font-bold text-xs uppercase tracking-widest group-hover:translate-x-1 transition-transform">Request Service →</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-b-4 border-[#D2B48C]">
+                        <div class="h-48 bg-[#5D4037] flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[url('images/slide2.jpeg')] bg-cover bg-center opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-500"></div>
+                            <span class="relative z-10 text-5xl">🏗️</span>
+                        </div>
+                        <div class="p-7">
+                            <h3 class="text-[#5D4037] font-black uppercase mb-3 tracking-tighter text-xl">Open to the Public</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Visit our yard at 4869 N. Davis Avenue. We welcome homeowners and contractors alike — no project too large or too small.</p>
+                            <a href="https://maps.google.com/?q=4869+N+Davis+Ave+Tucson+AZ" target="_blank" rel="noopener" class="inline-block mt-4 text-[#D2B48C] font-bold text-xs uppercase tracking-widest group-hover:translate-x-1 transition-transform">Get Directions →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="quote" class="py-20 px-4 bg-white border-t-8 border-[#D2B48C]">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl font-black text-[#5D4037] uppercase tracking-tighter mb-4 italic">Ready to Start?</h2>
-                <p class="text-gray-500 font-bold uppercase tracking-widest text-xs mb-10 italic">Free Delivery on 10+ Tons</p>
+        <!-- ===== MATERIALS PREVIEW ===== -->
+        <section class="py-20 px-4 bg-[#5D4037]">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-14">
+                    <p class="text-[#D2B48C] font-bold uppercase text-xs tracking-[0.3em] mb-3">In Stock</p>
+                    <h2 class="section-title text-4xl md:text-5xl font-black text-white uppercase">Popular Materials</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+                    <div class="material-preview-card bg-white/10 border border-white/20 rounded-xl p-4 text-center text-white hover:bg-[#D2B48C]/20 hover:border-[#D2B48C] transition-all cursor-pointer" onclick="window.location='materials.html'">
+                        <div class="text-3xl mb-2">🪨</div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Construction Aggregate</div>
+                    </div>
+                    <div class="material-preview-card bg-white/10 border border-white/20 rounded-xl p-4 text-center text-white hover:bg-[#D2B48C]/20 hover:border-[#D2B48C] transition-all cursor-pointer" onclick="window.location='materials.html'">
+                        <div class="text-3xl mb-2">💎</div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Decorative Rock</div>
+                    </div>
+                    <div class="material-preview-card bg-white/10 border border-white/20 rounded-xl p-4 text-center text-white hover:bg-[#D2B48C]/20 hover:border-[#D2B48C] transition-all cursor-pointer" onclick="window.location='materials.html'">
+                        <div class="text-3xl mb-2">🏖️</div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Sand</div>
+                    </div>
+                    <div class="material-preview-card bg-white/10 border border-white/20 rounded-xl p-4 text-center text-white hover:bg-[#D2B48C]/20 hover:border-[#D2B48C] transition-all cursor-pointer" onclick="window.location='materials.html'">
+                        <div class="text-3xl mb-2">🌱</div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Soil &amp; Fill Dirt</div>
+                    </div>
+                    <div class="material-preview-card bg-white/10 border border-white/20 rounded-xl p-4 text-center text-white hover:bg-[#D2B48C]/20 hover:border-[#D2B48C] transition-all cursor-pointer" onclick="window.location='materials.html'">
+                        <div class="text-3xl mb-2">🌊</div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Salt River Rock</div>
+                    </div>
+                    <div class="material-preview-card bg-white/10 border border-white/20 rounded-xl p-4 text-center text-white hover:bg-[#D2B48C]/20 hover:border-[#D2B48C] transition-all cursor-pointer" onclick="window.location='materials.html'">
+                        <div class="text-3xl mb-2">🏔️</div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Rip Rap</div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="materials.html" class="inline-block bg-[#D2B48C] text-[#5D4037] px-10 py-4 rounded-full font-black uppercase tracking-widest hover:bg-white transition shadow-2xl text-sm">
+                        See All Materials &amp; Pricing
+                    </a>
+                </div>
+            </div>
+        </section>
 
-                <form action="https://formspree.io/f/xwvbnrnj" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                    <input type="text" name="name" placeholder="Full Name" required class="border-2 border-gray-100 p-4 rounded-xl outline-none focus:border-[#D2B48C] transition">
-                    <input type="email" name="email" placeholder="Email Address" required class="border-2 border-gray-100 p-4 rounded-xl outline-none focus:border-[#D2B48C] transition">
-                    <input type="text" name="phone" placeholder="Phone Number" class="border-2 border-gray-100 p-4 rounded-xl outline-none focus:border-[#D2B48C] transition">
-                    <input type="text" name="location" placeholder="Delivery Zip Code" class="border-2 border-gray-100 p-4 rounded-xl outline-none focus:border-[#D2B48C] transition">
-                    <textarea name="message" placeholder="Project Details (Materials, estimated tonnage, etc.)" class="md:col-span-2 h-32 border-2 border-gray-100 p-4 rounded-xl outline-none focus:border-[#D2B48C] transition"></textarea>
-                    
-                    <button type="submit" class="md:col-span-2 bg-[#5D4037] text-white py-5 font-black rounded-xl uppercase tracking-widest hover:bg-[#D2B48C] hover:text-[#5D4037] transition duration-300 shadow-2xl">
-                        Request Final Quote
-                    </button>
-                </form>
+        <!-- ===== WHY CHOOSE US ===== -->
+        <section class="py-20 px-4 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-14">
+                    <p class="text-[#D2B48C] font-bold uppercase text-xs tracking-[0.3em] mb-3">The Difference</p>
+                    <h2 class="section-title text-4xl md:text-5xl font-black text-[#5D4037] uppercase">Why Choose Scott?</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center p-6">
+                        <div class="w-14 h-14 bg-[#D2B48C]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-[#5D4037]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
+                        </div>
+                        <h4 class="font-black text-[#5D4037] uppercase tracking-tighter mb-2">Family Owned</h4>
+                        <p class="text-gray-500 text-sm">Local, personal service with a commitment to quality on every single order.</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="w-14 h-14 bg-[#D2B48C]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-[#5D4037]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h4 class="font-black text-[#5D4037] uppercase tracking-tighter mb-2">Quality Guaranteed</h4>
+                        <p class="text-gray-500 text-sm">Premium sourced aggregate, rock, and sand — exactly as described, every time.</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="w-14 h-14 bg-[#D2B48C]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-[#5D4037]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h4 class="font-black text-[#5D4037] uppercase tracking-tighter mb-2">Fast Delivery</h4>
+                        <p class="text-gray-500 text-sm">We work around your schedule. Same-week delivery available on most orders.</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="w-14 h-14 bg-[#D2B48C]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-[#5D4037]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                        </div>
+                        <h4 class="font-black text-[#5D4037] uppercase tracking-tighter mb-2">Fair Pricing</h4>
+                        <p class="text-gray-500 text-sm">Transparent per-ton pricing with free delivery at 10 tons or more.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== QUOTE FORM ===== -->
+        <section id="quote" class="py-24 px-4 bg-[#F5F5DC] border-t-8 border-[#D2B48C]">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <p class="text-[#D2B48C] font-bold uppercase text-xs tracking-[0.3em] mb-3">No Obligation</p>
+                    <h2 class="section-title text-4xl md:text-5xl font-black text-[#5D4037] uppercase">Get a Quote</h2>
+                    <p class="text-gray-500 mt-4 font-light">Free delivery on orders of 10 tons or more. Delivery fees for smaller orders vary by distance.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-t-8 border-[#D2B48C]">
+                    <form action="https://formspree.io/f/xwvbnrnj" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" name="name" required placeholder="John Smith" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" name="email" required placeholder="john@example.com" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" name="phone" placeholder="(520) 000-0000" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Delivery Zip Code</label>
+                            <input type="text" name="location" placeholder="85705" class="form-input">
+                        </div>
+                        <div class="form-group md:col-span-2">
+                            <label class="form-label">Project Details</label>
+                            <textarea name="message" placeholder="Describe your project: type of material needed, estimated tonnage, timeframe..." class="form-input h-32 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="md:col-span-2 bg-[#5D4037] text-white py-5 font-black rounded-xl uppercase tracking-widest hover:bg-[#D2B48C] hover:text-[#5D4037] transition duration-300 shadow-2xl">
+                            Submit Quote Request
+                        </button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-[#5D4037] py-16 text-center px-4 border-t-8 border-[#D2B48C]">
-        <img src="logo.png" alt="Logo" class="h-24 mx-auto mb-8 opacity-50 grayscale">
-        <div class="text-[10px] text-gray-400 uppercase tracking-[0.3em] space-y-4">
-            <p>© 2026 Scott Dump Truck & Tractor Service</p>
-            <p>4869 N. Davis Avenue • Tucson, AZ</p>
-            <p class="text-white pt-4">Infrastructure by <a href="#" class="font-bold underline hover:text-[#D2B48C]">Theory Solutions</a></p>
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[#4E342E] py-16 text-center px-4 border-t-8 border-[#D2B48C]">
+        <img src="logo.png" alt="Scott Dump Truck Logo" class="h-20 mx-auto mb-8 opacity-40 grayscale">
+        <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-12">
+            <div>
+                <p class="text-[#D2B48C] font-black uppercase text-xs tracking-widest mb-3">Location</p>
+                <p class="text-gray-400 text-sm">4869 N. Davis Avenue<br>Tucson, AZ</p>
+                <a href="https://maps.google.com/?q=4869+N+Davis+Ave+Tucson+AZ" target="_blank" rel="noopener" class="text-[#D2B48C] text-xs font-bold uppercase tracking-widest hover:text-white transition mt-2 inline-block">Get Directions →</a>
+            </div>
+            <div>
+                <p class="text-[#D2B48C] font-black uppercase text-xs tracking-widest mb-3">Services</p>
+                <ul class="text-gray-400 text-sm space-y-1">
+                    <li><a href="materials.html" class="hover:text-white transition">Material Delivery</a></li>
+                    <li><a href="materials.html" class="hover:text-white transition">Tractor Service</a></li>
+                    <li><a href="calculator.html" class="hover:text-white transition">Tonnage Calculator</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="text-[#D2B48C] font-black uppercase text-xs tracking-widest mb-3">Quick Links</p>
+                <ul class="text-gray-400 text-sm space-y-1">
+                    <li><a href="#quote" class="hover:text-white transition">Get a Quote</a></li>
+                    <li><a href="materials.html" class="hover:text-white transition">All Materials</a></li>
+                    <li><a href="calculator.html" class="hover:text-white transition">Calculator</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-white/10 pt-8 text-[10px] text-gray-500 uppercase tracking-[0.3em] space-y-2">
+            <p>© 2026 Scott Dump Truck &amp; Tractor Service · Tucson, AZ</p>
+            <p class="text-white/50">Website by <a href="https://theory-solutions.com" class="font-bold underline hover:text-[#D2B48C] transition">Theory Solutions</a></p>
         </div>
     </footer>
 
+    <!-- ===== CHATBOT ===== -->
+    <div id="chat-widget" class="fixed bottom-6 right-6 z-50">
+        <button id="chat-toggle" onclick="toggleChat()" aria-label="Open chat assistant"
+            class="w-16 h-16 bg-[#5D4037] text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-[#D2B48C] hover:text-[#5D4037] transition-all duration-300 border-4 border-[#D2B48C]">
+            <span id="chat-icon-open" class="text-2xl">💬</span>
+            <span id="chat-icon-close" class="text-2xl hidden">✕</span>
+        </button>
+
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-2xl shadow-2xl border-2 border-[#D2B48C] overflow-hidden" style="max-height: 500px; display: none; flex-direction: column;">
+            <div class="bg-[#5D4037] px-5 py-4 flex items-center gap-3">
+                <div class="w-8 h-8 bg-[#D2B48C] rounded-full flex items-center justify-center text-sm font-black text-[#5D4037]">S</div>
+                <div>
+                    <p class="text-white font-black text-sm uppercase tracking-tighter">Scott's Assistant</p>
+                    <p class="text-[#D2B48C] text-[10px] uppercase tracking-widest">Ask me anything!</p>
+                </div>
+            </div>
+
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 bg-[#F5F5DC]/40" style="max-height: 300px;">
+                <div class="bot-bubble">
+                    Hi there! 👋 I'm Scott's assistant. I can help with material info, pricing, delivery, and more. What would you like to know?
+                </div>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <button class="quick-reply" onclick="handleQuickReply('Where are you located?')">📍 Location</button>
+                    <button class="quick-reply" onclick="handleQuickReply('Free delivery?')">🚛 Delivery</button>
+                    <button class="quick-reply" onclick="handleQuickReply('What materials do you carry?')">🪨 Materials</button>
+                    <button class="quick-reply" onclick="handleQuickReply('How do I get a quote?')">📋 Get Quote</button>
+                </div>
+            </div>
+
+            <div class="p-3 border-t border-gray-100 flex gap-2 bg-white">
+                <input id="chat-input" type="text" placeholder="Type a question..." 
+                    class="flex-1 border-2 border-gray-100 rounded-xl px-4 py-2 text-sm outline-none focus:border-[#D2B48C] transition"
+                    onkeypress="if(event.key==='Enter') sendChat()">
+                <button onclick="sendChat()" class="bg-[#5D4037] text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-[#D2B48C] hover:text-[#5D4037] transition">Send</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        // Mobile menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
