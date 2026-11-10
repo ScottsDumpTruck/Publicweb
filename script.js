@@ -35,7 +35,7 @@ const materialsList = [
     { name: "Coronado Brown Boulders", category: "Decorative Aggregate", price: "$25–$500 each", pricePerTon: null, density: 1.5, img: "images/Corondado_brown_boulders.png" },
     { name: "Mortar Sand", category: "Sand", price: "$55/ton", pricePerTon: 55, density: 1.3, img: "images/Mortarsand.png" },
     { name: "Concrete Sand", category: "Sand", price: "$50/ton", pricePerTon: 50, density: 1.3, img: "images/Concretesand.png" },
-    { name: "Fill Dirt", category: "Soil", price: "$20/ton or $240/15 tons", pricePerTon: 20, density: 1.2, img: "images/Fill dirt.png" },
+    { name: "Fill Dirt", category: "Soil", price: "$20/ton or $250/15 tons", pricePerTon: 20, density: 1.2, img: "images/Fill dirt.png" },
     { name: "River Rock", category: "Salt River Rock", price: "$80/ton", pricePerTon: 80, density: 1.2, img: "images/riverrock.jpeg" },
     { name: "4\"–12\" River Rock", category: "Salt River Rock", price: "$75/ton", pricePerTon: 75, density: 1.2, img: "images/4-12riverrock.png" },
     { name: "1\"–3\" Apache Red Rip Rap", category: "Rip Rap", price: "$65/ton", pricePerTon: 65, density: 1.5, img: "images/1-3_Apache_red_rip_rap.png" },
